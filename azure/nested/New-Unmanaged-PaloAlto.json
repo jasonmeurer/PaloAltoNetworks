@@ -32,9 +32,6 @@
 		"vmSize": {
 			"type": "string"
 		},
-		"availabilitySetName": {
-			"type": "string"
-		},
 		"adminUserName": {
 			"type": "string"
 		},
@@ -64,7 +61,7 @@
       },
       "properties": {
         "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('existingAvailabilitySetName'))]"
+          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
         },
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
