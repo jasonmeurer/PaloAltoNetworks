@@ -81,7 +81,7 @@
           "osDisk": {
             "name": "[concat('Disk-',parameters('nameFW'), '-OS')]",
             "vhd": {
-							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('vmName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
+							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('fwName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage",
