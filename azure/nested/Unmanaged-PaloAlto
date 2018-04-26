@@ -38,9 +38,6 @@
 		"newStorageAccount": {
 			"type": "string"
 		},
-		"sshKey": {
-			"type": "string"
-		},
 		"availabilitySetName": {
 			"type": "string"
 		}
