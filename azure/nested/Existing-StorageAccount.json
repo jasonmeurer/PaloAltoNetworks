@@ -5,7 +5,7 @@
     "location": {
       "type": "string"
     },
-    "newstorageAccount": {
+    "storageAccountName": {
       "type": "string",
       "metadata": {
         "Description": "The name of the new storage account created to store the VMs disks"
@@ -32,7 +32,7 @@
   "resources": [],
   "outputs": {
     "storageAccountId": {
-      "value": "[resourceId(parameters('storageAccountExistingRG'),'Microsoft.Storage/StorageAccounts',parameters('newstorageAccount'))]",
+      "value": "[resourceId(parameters('storageAccountExistingRG'),'Microsoft.Storage/StorageAccounts',parameters('storageAccountName'))]",
       "type": "string"
     }
   }
