@@ -1,11 +1,11 @@
-{
+    {
 	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"location": {
 			"type": "string"
 		},
-		"vmName": {
+		"nameFW": {
 			"type": "string"
 		},
 		"imageSku": {
@@ -35,7 +35,10 @@
 		"adminPassword": {
 			"type": "securestring"
 		},
-		"newStorageAccount": {
+		"storageAccountName": {
+			"type": "string"
+		},
+		"sshKey": {
 			"type": "string"
 		},
 		"availabilitySetName": {
@@ -45,62 +48,75 @@
 	"variables": {
 		"apiVersion": "2015-06-15"
 	},
-	"resources": [{
-		"apiVersion": "[variables('apiVersion')]",
-		"type": "Microsoft.Compute/virtualMachines",
-		"name": "[parameters('vmName')]",
-		"location": "[parameters('location')]",
-		"plan": {
-			"name": "[parameters('imageSku')]",
-			"product": "[parameters('imageOffer')]",
-			"publisher": "[parameters('imagePublisher')]"
-		},
-		"properties": {
-			"availabilitySet": {
-				"id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
-			},
-			"hardwareProfile": {
-				"vmSize": "[parameters('vmSize')]"
-			},
-			"osProfile": {
-				"computerName": "[parameters('vmName')]",
-				"adminUsername": "[parameters('adminUsername')]",
-				"adminPassword": "[parameters('adminPassword')]"
-			},
-			"storageProfile": {
-				"imageReference": {
-					"publisher": "[parameters('imagePublisher')]",
-					"offer": "[parameters('imageOffer')]",
-					"version": "[parameters('imageVersion')]",
-					"sku": "[parameters('imageSku')]"
-				},
-				"osDisk": {
-					"name": "osdisk",
-					"vhd": {
-						"uri": "[concat('http://', parameters('newStorageAccount'), '.blob.core.windows.net/vhds/', parameters('vmName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
-					},
-					"caching": "ReadWrite",
-					"createOption": "FromImage"
-				}
-			},
-			"networkProfile": {
-				"networkInterfaces": [{
-					"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicName'),'0'))]",
-					"properties": {
-						"primary": true
-					}
-				}, {
-					"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicName'),'1'))]",
-					"properties": {
-						"primary": false
-					}
-				}, {
-					"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicName'),'2'))]",
-					"properties": {
-						"primary": false
-					}
-				}]
-			}
+	"resources": [
+	{
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('nameFW')]",
+      "apiVersion": "2017-03-30",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[parameters('mgmtNicName')]",
+        "[parameters('untrustNicName')]",
+        "[parameters('trustNicName')]",
+        "[parameters('storageAccountName')]"
+      ],
+      "plan": {
+        "name": "[parameters('imageSku')]",
+        "product": "[variables('imageOffer')]",
+        "publisher": "[variables('imagePublisher')]"
+      },
+      "properties": {
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('existingAvailabilitySetName'))]"
+        },
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('nameFW')]",
+          "adminUsername": "[parameters('adminUsername')]",
+					"adminPassword": "[parameters('adminPassword')]"
+        },        
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[parameters('imageSku')]",
+            "version": "[parameters('imageVersion')]",
+          },
+          "osDisk": {
+            "name": "[concat('Disk-',parameters('nameFW'), '-OS')]",
+            "vhd": {
+							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('vmName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
+            },
+            "caching": "ReadWrite",
+            "createOption": "FromImage",
+            "diskSizeGB": 128
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('mgmtNicName'))]",
+              "properties": {
+                "primary": true
+              }
+            },
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('untrustNicName'))]",
+              "properties": {
+                "primary": false
+              }
+            },
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('trustNicName'))]",
+              "properties": {
+                "primary": false
+              }
+            }
+          ]
+        }
+      } 
 		}
-	}]
+	]
 }
