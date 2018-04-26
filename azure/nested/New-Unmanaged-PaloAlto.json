@@ -20,7 +20,13 @@
 		"imagePublisher": {
 			"type": "string"
 		},
-		"nicName": {
+		"mgmtNicName": {
+			"type": "string"
+		},
+		"untrustNicName": {
+			"type": "string"
+		},
+		"trustNicName": {
 			"type": "string"
 		},
 		"vmSize": {
@@ -54,12 +60,6 @@
       "name": "[parameters('nameFW')]",
       "apiVersion": "2017-03-30",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[parameters('mgmtNicName')]",
-        "[parameters('untrustNicName')]",
-        "[parameters('trustNicName')]",
-        "[parameters('storageAccountName')]"
-      ],
       "plan": {
         "name": "[parameters('imageSku')]",
         "product": "[variables('imageOffer')]",
