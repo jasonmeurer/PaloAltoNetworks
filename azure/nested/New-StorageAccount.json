@@ -23,6 +23,13 @@
         "Description": "The type of the Storage Account created"
       },
       "defaultValue": "Standard_LRS"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "Description": "The type of the Storage Account created"
+      },
+      "defaultValue": "Standard_LRS"
     }
   },
   "resources": [
