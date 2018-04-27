@@ -141,7 +141,13 @@
       "metadata": {
         "description": "Enter the name of your existing Availability Set that uses Managed Disks."
       }
-    }
+    },
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Enter the name of your existing storage account."
+      }
+    },
   },
   "variables": {
     "imagePublisher": "paloaltonetworks",
