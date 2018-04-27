@@ -41,6 +41,9 @@
 		"storageAccountName": {
 			"type": "string"
 		},
+    		"osDiskStorageType": {
+    			"type": "string"
+    		},
 		"availabilitySetName": {
 			"type": "string"
 		}
