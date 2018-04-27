@@ -1,11 +1,11 @@
-    {
+{
 	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"location": {
 			"type": "string"
 		},
-		"nameFW": {
+		"firewallName": {
 			"type": "string"
 		},
 		"imageSku": {
@@ -46,71 +46,69 @@
 		}
 	},
 	"variables": {
-		"apiVersion": "2015-06-15"
 	},
 	"resources": [
-	{
-      "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('nameFW')]",
-      "apiVersion": "2017-03-30",
-      "location": "[resourceGroup().location]",
-      "plan": {
-        "name": "[parameters('imageSku')]",
-        "product": "[parameters('imageOffer')]",
-        "publisher": "[parameters('imagePublisher')]"
-      },
-      "properties": {
-        "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
-        },
-        "hardwareProfile": {
-          "vmSize": "[parameters('vmSize')]"
-        },
-        "osProfile": {
-          "computerName": "[parameters('nameFW')]",
-          "adminUsername": "[parameters('adminUsername')]",
+		{
+			"type": "Microsoft.Compute/virtualMachines",
+			"name": "[parameters('firewallName')]",
+			"apiVersion": "2017-03-30",
+			"location": "[resourceGroup().location]",
+			"plan": {
+				"name": "[parameters('imageSku')]",
+				"product": "[parameters('imageOffer')]",
+				"publisher": "[parameters('imagePublisher')]"
+			},
+			"properties": {
+				"availabilitySet": {
+					"id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
+				},
+				"hardwareProfile": {
+					"vmSize": "[parameters('vmSize')]"
+				},
+				"osProfile": {
+					"computerName": "[parameters('firewallName')]",
+					"adminUsername": "[parameters('adminUsername')]",
 					"adminPassword": "[parameters('adminPassword')]"
-        },        
-        "storageProfile": {
-          "imageReference": {
-            "publisher": "[parameters('imagePublisher')]",
-            "offer": "[parameters('imageOffer')]",
-            "sku": "[parameters('imageSku')]",
-            "version": "[parameters('imageVersion')]",
-          },
-          "osDisk": {
-            "name": "[concat('Disk-',parameters('nameFW'), '-OS')]",
-            "vhd": {
-							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('vmName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
-            },
-            "caching": "ReadWrite",
-            "createOption": "FromImage",
-            "diskSizeGB": 128
-          }
-        },
-        "networkProfile": {
-          "networkInterfaces": [
-            {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('mgmtNicName'))]",
-              "properties": {
-                "primary": true
-              }
-            },
-            {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('untrustNicName'))]",
-              "properties": {
-                "primary": false
-              }
-            },
-            {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('trustNicName'))]",
-              "properties": {
-                "primary": false
-              }
-            }
-          ]
-        }
-      } 
+				},
+				"storageProfile": {
+					"imageReference": {
+						"publisher": "[parameters('imagePublisher')]",
+						"offer": "[parameters('imageOffer')]",
+						"sku": "[parameters('imageSku')]",
+						"version": "[parameters('imageVersion')]",
+					},
+					"osDisk": {
+						"name": "[concat('Disk-',parameters('firewallName'), '-OS')]",
+						"managedDisk": {
+							"storageAccountType": "[parameters('osDiskStorageType')]"
+						},
+						"caching": "ReadWrite",
+						"createOption": "FromImage",
+						"diskSizeGB": 128
+					}
+				},
+				"networkProfile": {
+					"networkInterfaces": [{
+							"id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('mgmtNicName'))]",
+							"properties": {
+								"primary": true
+							}
+						}, 
+						{
+							"id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('untrustNicName'))]",
+							"properties": {
+								"primary": false
+							}
+						}, 
+						{
+							"id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('trustNicName'))]",
+							"properties": {
+								"primary": false
+							}
+						}
+					]
+				}
+			}
 		}
 	]
 }
