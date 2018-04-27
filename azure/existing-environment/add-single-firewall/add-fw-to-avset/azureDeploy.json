@@ -260,8 +260,7 @@
     							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
     						},
     						"caching": "ReadWrite",
-    						"createOption": "FromImage",
-    						"diskSizeGB": 128
+    						"createOption": "FromImage"
     					}
           }
         },
