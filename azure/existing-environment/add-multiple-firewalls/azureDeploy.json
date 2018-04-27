@@ -7,19 +7,20 @@
 			"metadata": {
 				"description": "Enter the name of the firewall.  This name will have a number appended to the end of it (i.e. if you enter PaloAlto as the FW Name, each firewall will be deployed as: PaloAlto0, PaloAlto1, PaloAlto2, etc.)"
 			},
-			"defaultValue": "PaloAltoFW"
+			"defaultValue": "PaloAlto"
 		},
 		"numberOfFirewalls": {
 			"type": "int",
-			"metadata": {
-				"description": "Select the number of VM-Series firewalls to deploy.  Minimum is 1, maximum is 20."
-			},
 			"minValue": 1,
 			"maxValue": 20,
       "defaultValue": 2
+			"metadata": {
+				"description": "Select the number of VM-Series firewalls to deploy.  Minimum is 1, maximum is 5."
+			}
 		},
 		"virtualMachineSize": {
 			"type": "string",
+      "defaultValue": "Standard_D3_v2",
 			"allowedValues": [
           "Standard_D3",
           "Standard_D4",
@@ -28,11 +29,11 @@
           "Standard_A4",
           "Standard_DS3_v2",
           "Standard_DS4_v2"
-      ],
-      "defaultValue": "Standard_D3_v2"
+      ]
     },
     "imageSku": {
       "type": "string",
+      "defaultValue": "byol",
       "metadata": {
 				"description": "Select BYOL, PAYG-Bundle1, or PAYG-Bundle2 (more info: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/paloaltonetworks.vmseries-ngfw?tab=PlansAndPrice)"
 			},
@@ -40,66 +41,65 @@
         "byol",
         "bundle1",
         "bundle2"
-      ],
-      "defaultValue": "byol"
+      ]
     },
     "imageVersion": {
       "type": "string",
-      "metadata": {
-				"description": "Select the PAN-OS version to run.  Current recommended release is PAN-OS 8.0.7"
-			},
+      "defaultValue": "latest",
       "allowedValues": [
         "latest",
         "8.0.0",
         "7.1.1"
       ],
-      "defaultValue": "latest"
+      "metadata": {
+				"description": "Select the PAN-OS version to run.  Current recommended release is PAN-OS 8.0.7"
+			}
     },
 		"osDiskStorageType": {
 			"type": "string",
-			"metadata": {
-				"description": "Standard or Premium storage for OS disk (more info: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage) "
-			},
+			"defaultValue": "Premium_LRS"
 			"allowedValues": [
 				"Standard_LRS",
 				"Premium_LRS"
 			],
-			"defaultValue": "Premium_LRS"
+			"metadata": {
+				"description": "Standard or Premium storage for OS disk (more info: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage) "
+			}
 		},
 		"firewallAvailabilitySetName": {
 			"type": "string",
+			"defaultValue": "Firewall-AV-Set",
 			"metadata": {
 				"description": "Enter the name for the availability set that the firewall(s) will be placed in."
-			},
-			"defaultValue": "Firewall-AV-Set"
+			}
 		},
 		"availabilitySetUpdateDomainCount": {
 			"type": "int",
+			"defaultValue": 5,
 			"metadata": {
-				"description": "Enter the name for the availability set that the firewall(s) will be placed in."
-			},
-			"defaultValue": 5
+				"description": "Enter the availability set's update domain count.  Default is 5."
+			}
 		},
 		"availabilitySetFaultDomainCount": {
 			"type": "int",
+			"defaultValue": 3,
 			"metadata": {
-				"description": "Enter the name for the availability set that the firewall(s) will be placed in."
-			},
-			"defaultValue": 3
+				"description": "Enter the availability set's fault domain count.  Default is 3."
+			}
 		},
 		"mgmtPublicNicName": {
 			"type": "string",
+			"defaultValue": "pip-mgmt",
 			"metadata": {
-				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry-firewallname#]"
-			},
-			"defaultValue": "pip-mgmt"
+				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
 		},
 		"mgmtSubnetNsgName": {
 			"type": "string",
+			"defaultValue": "mgmt-subnet-nsg",
 			"metadata": {
 				"description": "Enter the name for the Azure Network Security Group for the management subnet."
-			},
-			"defaultValue": "mgmt-subnet-nsg"
+			}
 		},
 		"mgmtDNSLabelPrefix": {
 			"type": "string",
@@ -109,24 +109,24 @@
 		},
 		"mgmtNicName": {
 			"type": "string",
+			"defaultValue": "mgmt-nic",
 			"metadata": {
-				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry-firewallname#]"
-			},
-			"defaultValue": "mgmt-nic"
+				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
 		},
 		"untrustNicName": {
 			"type": "string",
+			"defaultValue": "untrust-nic",
 			"metadata": {
-				"description": "Enter the name for the firewall's untrust NIC.  In the Azure portal name will appear as {your_entry}-{firewallname}#"
-			},
-			"defaultValue": "untrust-nic"
+				"description": "Enter the name for the firewall's untrust NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
 		},
 		"trustNicName": {
 			"type": "string",
-			"metadata": {
-				"description": "Enter the name for the firewall's trust NIC.  In the Azure portal, the name will appear as {your_entry}-{firewallname}#"
-			},
 			"defaultValue": "trust-nic"
+			"metadata": {
+				"description": "Enter the name for the firewall's trust NIC.  In the Azure portal, the name will appear as [yourentry]-firewallname#"
+			}
 		},
 		"adminUsername": {
 			"type": "string",
@@ -172,29 +172,23 @@
 		},
 		"internalLBName": {
 			"type": "string",
+			"defaultValue": "Internal-Standard-LB",
 			"metadata": {
 				"description": "Enter the name for the internal standard load balancer."
-			},
-			"defaultValue": "Internal-Standard-LB"
+			}
 		},
 		"internalLBFrontEndName": {
 			"type": "string",
+			"defaultValue": "Internal-LB-Frontend",
 			"metadata": {
 				"description": "Enter the name for the internal load balancer's front end IP."
-			},
-			"defaultValue": "Internal-LB-Frontend"
+			}
 		},
 		"internalLBBackendPoolName": {
 			"type": "string",
+			"defaultValue": "Internal-LB-Backend-Pool",
 			"metadata": {
 				"description": "Enter the name for the load balancer's backend pool.  This will be the Trust interfaces of the firewall(s)."
-			},
-			"defaultValue": "Internal-LB-Backend-Pool"
-		},
-		"internalLBFrontEndIP": {
-			"type": "string",
-			"metadata": {
-				"description": "Enter the load balancer's front end IP address.  Must be in the same subnet as the 'Internal LB Subnet Name'"
 			}
 		},
 		"internalLBSubnetName": {
@@ -203,12 +197,18 @@
 				"description": "Enter the subnet that will contain the internal load balancer's front end IP."
 			}
 		},
-		"internalLBProbeName": {
+		"internalLBFrontEndIP": {
 			"type": "string",
 			"metadata": {
+				"description": "Enter the load balancer's front end IP address.  Must be in the same subnet as the 'Internal LB Subnet Name'"
+			}
+		},
+		"internalLBProbeName": {
+			"type": "string",
+			"defaultValue": "Internal-LB-Health-Probe-22",
+			"metadata": {
 				"description": "Enter the name for the load balancer's health probe name."
-			},
-			"defaultValue": "TCP-Health-Probe"
+			}
 		},
 		"internalLBProbePort": {
 			"type": "int",
@@ -234,7 +234,7 @@
     },
     "publicLBBackendPoolName": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "Palo-Untrust-Pool",
     },
 		"publicLBIpName": {
       "type": "string",
@@ -242,23 +242,23 @@
     },
     "publicLBProbeName": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "Public-LB-Health-Probe-22",
     },
     "publicLBProbePort": {
       "type": "int",
-      "defaultValue": "",   
+      "defaultValue": "22",   
     },
     "publicLBRuleName": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "Allow-TCP-22",
     },
     "publicLBRuleFrontendPort": {
       "type": "int",
-      "defaultValue": "",
+      "defaultValue": "22",
     },
     "publicLBRuleBackendPort": {
       "type": "int",
-      "defaultValue": "",
+      "defaultValue": "22",
     }
 	},
 	"variables": {
