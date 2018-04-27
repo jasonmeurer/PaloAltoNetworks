@@ -184,18 +184,6 @@
 			},
 			"defaultValue": "Internal-LB-Frontend"
 		},
-		"internalLBSubnetName": {
-			"type": "string",
-			"metadata": {
-				"description": "Enter the subnet that will contain the internal load balancer's front end IP."
-			}
-		},
-		"internalLBFrontEndIP": {
-			"type": "string",
-			"metadata": {
-				"description": "Enter the load balancer's front end IP address.  Must be in the same subnet as the 'Internal LB Subnet Name'"
-			}
-		},
 		"internalLBBackendPoolName": {
 			"type": "string",
 			"metadata": {
@@ -203,12 +191,17 @@
 			},
 			"defaultValue": "Internal-LB-Backend-Pool"
 		},
-		"internalLBRuleHA": {
+		"internalLBFrontEndIP": {
 			"type": "string",
 			"metadata": {
-				"description": "Enter a name for the load balancer rule that will allow HA ports."
-			},
-			"defaultValue": "LB-Rule-HA-Ports"
+				"description": "Enter the load balancer's front end IP address.  Must be in the same subnet as the 'Internal LB Subnet Name'"
+			}
+		},
+		"internalLBSubnetName": {
+			"type": "string",
+			"metadata": {
+				"description": "Enter the subnet that will contain the internal load balancer's front end IP."
+			}
 		},
 		"internalLBProbeName": {
 			"type": "string",
@@ -224,36 +217,49 @@
 			},
 			"defaultValue": 22
 		},
-				"publicLBIpName": {
-            "type": "string"
-        },
-        "publicLBName": {
-            "type": "string"
-        },
-        "publicLBFrontEndName": {
-            "type": "string"
-        },
-        "publicLBBackendPoolName": {
-            "type": "string"
-        },
-        "publicLBRuleName": {
-            "type": "string"
-        },
-        "publicLBFrontEndPort": {
-            "type": "int"
-        },
-        "publicLBBackEndPort": {
-            "type": "int"
-        },
-        "publicLBProbeName": {
-            "type": "string"
-        },
-        "publicLBProbeProtocol": {
-            "type": "string"
-        },
-        "publicLBProbePort": {
-            "type": "int"
-        }
+		"internalLBRuleHA": {
+			"type": "string",
+			"metadata": {
+				"description": "Enter a name for the load balancer rule that will allow HA ports."
+			},
+			"defaultValue": "LB-Rule-HA-Ports"
+		},
+		"publicLBName": {
+			"type": "string",
+      "defaultValue": "LB-Rule-HA-Ports"
+    },
+    "publicLBFrontEndName": {
+      "type": "string",
+      "defaultValue": "Internal-LB-Frontend",
+    },
+    "publicLBBackendPoolName": {
+      "type": "string",
+      "defaultValue": "",
+    },
+		"publicLBIpName": {
+      "type": "string",
+			"defaultValue": "Internal-Standard-LB",
+    },
+    "publicLBProbeName": {
+      "type": "string",
+      "defaultValue": "",
+    },
+    "publicLBProbePort": {
+      "type": "int",
+      "defaultValue": "",   
+    },
+    "publicLBRuleName": {
+      "type": "string",
+      "defaultValue": "",
+    },
+    "publicLBRuleFrontendPort": {
+      "type": "int",
+      "defaultValue": "",
+    },
+    "publicLBRuleBackendPort": {
+      "type": "int",
+      "defaultValue": "",
+    }
 	},
 	"variables": {
 		"vnetId": "[resourceId(parameters('virtualNetworkRGName'),concat('Microsoft.Network','/','virtualNetworks'),parameters('virtualNetworkName'))]",
@@ -398,8 +404,8 @@
                             "frontendIPConfiguration": {
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('publicLBName')), '/frontendIpConfigurations/', parameters('publicLBFrontEndName'))]"
                             },
-                            "frontendPort": "[parameters('publicLBFrontEndPort')]",
-                            "backendPort": "[parameters('publicLBBackEndPort')]",
+                            "frontendPort": "[parameters('publicLBRuleFrontendPort')]",
+                            "backendPort": "[parameters('publicLBRuleBackendPort')]",
                             "enableFloatingIP": false,
                             "idleTimeoutInMinutes": 4,
                             "protocol": "Tcp",
@@ -418,7 +424,7 @@
                     {
                         "name": "[parameters('publicLBProbeName')]",
                         "properties": {
-                            "protocol": "[parameters('publicLBProbeProtocol')]",
+                            "protocol": "TCP",
                             "port": "[parameters('publicLBProbePort')]",
                             "intervalInSeconds": 5,
                             "numberOfProbes": 2
