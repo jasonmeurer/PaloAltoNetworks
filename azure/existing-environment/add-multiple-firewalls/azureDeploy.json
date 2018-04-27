@@ -277,7 +277,7 @@
 		"_artifactsLocation": "https://raw.githubusercontent.com/mattmclimans/PaloAltoNetworks/master/azure/nested/",
 		"dynamicToStatic-PublicNic_templateUri": "[concat(variables('_artifactsLocation'), 'dynamicToStatic-PublicNic.json', variables('_artifactsLocationSasToken'))]",
 		"nsgToSubnet_templateUri": "[concat(variables('_artifactsLocation'), 'ApplyNsgToSubnet.json', variables('_artifactsLocationSasToken'))]",
-		"dynamicToStatic-LBprivate_templateUri": "[concat(variables('_artifactsLocation'), 'dynamicToStatic-LBprivate.json', variables('_artifactsLocationSasToken'))]"
+		"dynamicToStatic-LBprivate_templateUri": "[concat(variables('_artifactsLocation'), 'Yes-DeployLB.json', variables('_artifactsLocationSasToken'))]"
 	},
 	"resources": [
 		{
