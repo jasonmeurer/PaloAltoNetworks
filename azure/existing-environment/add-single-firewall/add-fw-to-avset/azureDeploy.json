@@ -79,10 +79,22 @@
         "description": "Enter the name of the existing virtual network that has the management, untrust, and trust subnets."
       }
     },
-    "existingMgmtSubnetName": {
+    "mgmtSubnetName": {
       "type": "string",
       "metadata": {
         "description": "Enter the existing subnet for the firewall's management NIC."
+      }
+    },
+    "untrustSubnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "Enter the existing subnet for the firewall's untrust NIC."
+      }
+    },
+    "trustSubnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "Enter the existing subnet name for the firewall's trust NIC."
       }
     },
     "mgmtNicName": {
@@ -92,35 +104,11 @@
         "description": "Enter the name for the firewall's management NIC."
       }
     },
-    "mgmtIPAddress": {
-      "type": "string",
-      "metadata": {
-        "description": "Enter the static IP Address for the firewall's management NIC."
-      }
-    },
-    "existingUntrustSubnetName": {
-      "type": "string",
-      "metadata": {
-        "description": "Enter the existing subnet for the firewall's untrust NIC."
-      }
-    },
     "untrustNicName": {
       "type": "string",
       "defaultValue": "new-fw-untrust-nic",
       "metadata": {
         "description": "Enter the name for the firewall's untrust NIC."
-      }
-    },
-    "untrustIPAddress": {
-      "type": "string",
-      "metadata": {
-        "description": "Enter the static IP Address for the firewall's untrust NIC."
-      }
-    },
-    "existingTrustSubnetName": {
-      "type": "string",
-      "metadata": {
-        "description": "Enter the existing subnet name for the firewall's trust NIC."
       }
     },
     "trustNicName": {
@@ -130,13 +118,25 @@
         "description": "Enter the name for the firewall's trust NIC."
       }
     },
+    "mgmtIPAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "Enter the static IP Address for the firewall's management NIC."
+      }
+    },
+    "untrustIPAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "Enter the static IP Address for the firewall's untrust NIC."
+      }
+    },
     "trustIPAddress": {
       "type": "string",
       "metadata": {
         "description": "Enter the static IP Address for the firewall's trust NIC."
       }
     },
-    "existingAvailabilitySetName": {
+    "availabilitySetName": {
       "type": "string",
       "metadata": {
         "description": "Enter the name of your existing Availability Set that uses Managed Disks."
@@ -147,9 +147,9 @@
     "imagePublisher": "paloaltonetworks",
     "imageOffer": "vmseries1",
     "vnetID": "[resourceId(parameters('virtualNetworkRGName'),concat('Microsoft.Network','/','virtualNetworks'),parameters('virtualNetworkName'))]",
-    "mgmtSubnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('existingMgmtSubnetName'))]",
-    "untrustSubnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('existingUntrustSubnetName'))]",
-    "trustSubnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('existingTrustSubnetName'))]"
+    "mgmtSubnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('mgmtSubnetName'))]",
+    "untrustSubnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('untrustSubnetName'))]",
+    "trustSubnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('trustSubnetName'))]"
   },
   "resources": [
     {
@@ -231,7 +231,7 @@
       },
       "properties": {
         "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('existingAvailabilitySetName'))]"
+          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
         },
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
