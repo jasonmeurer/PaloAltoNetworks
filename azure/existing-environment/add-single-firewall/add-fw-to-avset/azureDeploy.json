@@ -255,13 +255,12 @@
             "version": "[parameters('imageVersion')]",
           },
           "osDisk": {
-    						"name": "[concat('Disk-',parameters('firewallName'), '-OS')]",
+    						"name": "osdisk",
     						"vhd": {
     							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', variables('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
     						},
     						"caching": "ReadWrite",
     						"createOption": "FromImage"
-    					}
           }
         },
         "networkProfile": {
