@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.13",
   "parameters": {
-    "nameFW": {
+    "firewallName": {
       "type": "string"
     },
     "vmSize": {
@@ -222,7 +222,7 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('nameFW')]",
+      "name": "[parameters('firewallName')]",
       "apiVersion": "2017-03-30",
       "location": "[resourceGroup().location]",
       "dependsOn": [
@@ -243,7 +243,7 @@
           "vmSize": "[parameters('vmSize')]"
         },
         "osProfile": {
-          "computerName": "[parameters('nameFW')]",
+          "computerName": "[parameters('firewallName')]",
           "adminUsername": "[parameters('adminUsername')]",
 					"adminPassword": "[parameters('adminPassword')]"
         },        
@@ -257,7 +257,7 @@
           "osDisk": {
     						"name": "[concat('Disk-',parameters('firewallName'), '-OS')]",
     						"vhd": {
-    							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
+    							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', variables('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
     						},
     						"caching": "ReadWrite",
     						"createOption": "FromImage"
