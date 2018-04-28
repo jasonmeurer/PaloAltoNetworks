@@ -41,6 +41,9 @@
     		"storageAccountName": {
     			"type": "string"
     		},
+     		"storageAccountRG": {
+    			"type": "string"
+    		},
     		"osDiskStorageType": {
     			"type": "string"
     		},
