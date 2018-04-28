@@ -77,22 +77,23 @@
     					"adminUsername": "[parameters('adminUsername')]",
     					"adminPassword": "[parameters('adminPassword')]"
     				},
-    				  "storageProfile": {
-                "imageReference": {
-                    "publisher": "[variables('imagePublisher')]",
-                    "offer": "[variables('imageOffer')]",
-                    "sku": "[parameters('imageSku')]",
-                    "version": "[parameters('imageVersion')]"
-                },
-                "osDisk": {
-                    "name": "osdisk",
-                    "vhd": {
-                        "uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
-                    },
-                    "caching": "ReadWrite",
-                    "createOption": "FromImage"
-                }
-            },
+    				"storageProfile": {
+    					"imageReference": {
+    						"publisher": "[parameters('imagePublisher')]",
+    						"offer": "[parameters('imageOffer')]",
+    						"sku": "[parameters('imageSku')]",
+    						"version": "[parameters('imageVersion')]",
+    					},
+    					"osDisk": {
+    						"name": "[concat('Disk-',parameters('firewallName'), '-OS')]",
+    						"vhd": {
+    							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
+    						},
+    						"caching": "ReadWrite",
+    						"createOption": "FromImage",
+    						"diskSizeGB": 128
+    					}
+    				},
     				"networkProfile": {
     					"networkInterfaces": [
     						{
