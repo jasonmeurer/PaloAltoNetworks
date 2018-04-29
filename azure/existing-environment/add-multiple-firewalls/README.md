@@ -32,7 +32,7 @@ This template deploys a selected number of Palo Alto Networks VM-300 Series fire
 ### Template Parameters
 The table below describes each parameter in detail.
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firewall&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firewall&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | ------ | ------ |
 | **Firewall Name** | The name of the firewall to deploy.  This name will have a number appended to it.  For example, if deploying two firewalls and the firewall name is Palo-Alto, the first firewall will be named Palo-Alto0, second firewall will be named Palo-Alto1. |
 | **Number Of Firewalls** | This number indicates how many firewalls to deploy.  Entry must be an integer between 1-5. |
@@ -49,7 +49,7 @@ The table below describes each parameter in detail.
 | **Storage Account Name** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, this will be the name of the new storage account.  If using an Existing-Unmanaged-Storage-Account, enter the name of the existing storage account. |
 | **Os Disk Storage Type** | Sets the disk storage type for the firewall's OS. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Availability&nbsp;Set&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Availability&nbsp;Set&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | ------ | ------ |
 | **New Or Existing Availability Set** | Selects to deploy firewall(s) to a new or existing availability set. |
 | **Availability Set Name** | Enter the name of the availability set to deploy the firewall(s).  If creating a new availability set, enter the name of the new availability set.  If using an existing availability set, enter the name of the existing availability set. |
