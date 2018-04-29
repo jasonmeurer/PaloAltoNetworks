@@ -32,7 +32,7 @@ This template deploys a selected number of Palo Alto Networks VM-300 Series fire
 ### Template Parameters
 The table below describes each parameter in detail.
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firewall&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firewall&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | ------ | ------ |
 | **Firewall Name** | The name of the firewall to deploy.  This name will have a number appended to it.  For example, if deploying two firewalls and the firewall name is Palo-Alto, the first firewall will be named Palo-Alto0, second firewall will be named Palo-Alto1. |
 | **Number Of Firewalls** | This number indicates how many firewalls to deploy.  Entry must be an integer between 1-5. |
@@ -42,7 +42,7 @@ The table below describes each parameter in detail.
 | **Admin Username** | Sets the username for the firewall(s).  Do not use admin or administrator. |
 | **Admin Password** | Sets the password the admin username entered. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Storage&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Storage&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
 | **Storage Account Type** | Sets the type of storage account to use for the Firewall's OS disks.  New-Unmanaged-Storage-Account creates a new storage account.  Existing-Unmanaged-Storage-Account uses an existing storage account.  Managed-Storage-Account uses Azure's managed storage disks. |
 | **Storage Account Resource Group** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, enter the name of the resource group to deploy it to.  If adding OS disks to an Existing-Unmanaged-Storage-Account, enter the resource group of the the existing storage account. |
@@ -69,7 +69,7 @@ The table below describes each parameter in detail.
 | **Untrust Subnet Name** | Enter the name of the EXISTING untrust subnet. |
 | **Trust Subnet Name** | Enter the name of the EXISTING trust subnet. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
 | ------ | ------ |
 | **Create New Internal LB** | "Create-New-LB" creates a new internal standard load balancer.  "Use-Existing-LB" adds the firewall(s) to an existing internal load balancer.  "Do-Not-Use-LB" does not add the firewall(s) to an internal load balancer. |
 | **Internal LB Name** | If Create-New-LB is selected, enter the name of the new internal load balancer.  If Use-Existing-LB is selected, enter the name of the existing internal load balancer. |
