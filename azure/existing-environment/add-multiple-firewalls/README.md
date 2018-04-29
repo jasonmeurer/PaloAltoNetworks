@@ -57,7 +57,7 @@ The table below describes each parameter in detail.
 | **Availability Set Fault Domain Count** | Applies only if creating a new availability set.  This value specifies the fault domain count for the new availability set. Default value: 3 |
 | **Mgmt Public Nic Name** | Applies only if adding public IP to the management interface.  This value sets the name of the public IP name for the firewall(s) management interface. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
 | **Mgmt DNS Label Prefix** | Applies only if adding public IP to the management interface.  This value sets the DNS name for the firewall(s) management public IP. |
 | **Mgmt Nic Name** | Sets the name for the firewall(s) private management NIC. |
