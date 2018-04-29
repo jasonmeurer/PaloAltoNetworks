@@ -1,0 +1,119 @@
+    {
+    	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    	"contentVersion": "1.0.0.0",
+    	"parameters": {
+    		"location": {
+    			"type": "string"
+    		},
+    		"firewallName": {
+    			"type": "string"
+    		},
+    		"imageSku": {
+    			"type": "string"
+    		},
+    		"imageOffer": {
+    			"type": "string"
+    		},
+    		"imageVersion": {
+    			"type": "string"
+    		},
+    		"imagePublisher": {
+    			"type": "string"
+    		},
+    		"mgmtNicName": {
+    			"type": "string"
+    		},
+    		"untrustNicName": {
+    			"type": "string"
+    		},
+    		"trustNicName": {
+    			"type": "string"
+    		},
+    		"vmSize": {
+    			"type": "string"
+    		},
+    		"adminUserName": {
+    			"type": "string"
+    		},
+    		"adminPassword": {
+    			"type": "securestring"
+    		},
+    		"storageAccountName": {
+    			"type": "string"
+    		},
+    		"osDiskStorageType": {
+    			"type": "string"
+    		},
+    		"availabilitySetName": {
+    			"type": "string"
+    		}
+    	},
+    	"variables": {
+    		"apiVersion": "2015-06-15"
+    	},
+    	"resources": [
+    	{
+    			"type": "Microsoft.Compute/virtualMachines",
+    			"name": "[parameters('firewallName')]",
+    			"apiVersion": "2017-03-30",
+    			"location": "[resourceGroup().location]",
+    			"plan": {
+    				"name": "[parameters('imageSku')]",
+    				"product": "[parameters('imageOffer')]",
+    				"publisher": "[parameters('imagePublisher')]"
+    			},
+    			"properties": {
+    				"availabilitySet": {
+    					"id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
+    				},
+    				"hardwareProfile": {
+    					"vmSize": "[parameters('vmSize')]"
+    				},
+    				"osProfile": {
+    					"computerName": "[parameters('firewallName')]",
+    					"adminUsername": "[parameters('adminUsername')]",
+    					"adminPassword": "[parameters('adminPassword')]"
+    				},
+    				"storageProfile": {
+    					"imageReference": {
+    						"publisher": "[parameters('imagePublisher')]",
+    						"offer": "[parameters('imageOffer')]",
+    						"sku": "[parameters('imageSku')]",
+    						"version": "[parameters('imageVersion')]",
+    					},
+    					"osDisk": {
+    						"name": "[concat('os-disk-', parameters('firewallName'))]",
+    						"vhd": {
+    							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
+    						},
+    						"caching": "ReadWrite",
+    						"createOption": "FromImage",
+    						"diskSizeGB": 60
+    					}
+    				},
+    				"networkProfile": {
+    					"networkInterfaces": [
+    						{
+    							"id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('mgmtNicName'))]",
+    							"properties": {
+    								"primary": true
+    							}
+    						}, 
+    						{
+    							"id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('untrustNicName'))]",
+    							"properties": {
+    								"primary": false
+    							}
+    						}, 
+    						{
+    							"id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('trustNicName'))]",
+    							"properties": {
+    								"primary": false
+    							}
+    						}
+    					]
+    				}
+    			}
+    		}
+    	]
+    }
