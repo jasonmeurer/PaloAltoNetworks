@@ -11,6 +11,12 @@
       "privateIp": {
         "type": "string"
       },
+      "publicIpName": {
+        "type": "string"
+      },
+      "publicIpDnsName": {
+        "type": "string"
+      },
       "lbName": {
         "type": "string"
       },
