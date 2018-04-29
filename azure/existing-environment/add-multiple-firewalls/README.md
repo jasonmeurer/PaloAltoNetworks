@@ -42,11 +42,13 @@ The table below describes each parameter in detail.
 | **Admin Username** | Sets the username for the firewall(s).  Do not use admin or administrator. |
 | **Admin Password** | Sets the password the admin username entered. |
 
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | **Storage Account Type** | Sets the type of storage account to use for the Firewall's OS disks.  New-Unmanaged-Storage-Account creates a new storage account.  Existing-Unmanaged-Storage-Account uses an existing storage account.  Managed-Storage-Account uses Azure's managed storage disks. |
 | **Storage Account Resource Group** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, enter the name of the resource group to deploy it to.  If adding OS disks to an Existing-Unmanaged-Storage-Account, enter the resource group of the the existing storage account. |
 | **Storage Account Name** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, this will be the name of the new storage account.  If using an Existing-Unmanaged-Storage-Account, enter the name of the existing storage account. |
 | **Os Disk Storage Type** | Sets the disk storage type for the firewall's OS. |
+
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | **New Or Existing Availability Set** | Selects to deploy firewall(s) to a new or existing availability set. |
@@ -54,6 +56,7 @@ The table below describes each parameter in detail.
 | **Availability Set Update Domain Count** | Applies only if creating a new availability set.  This value sets the update domain count for the new availability set.  Default value: 5 |
 | **Availability Set Fault Domain Count** | Applies only if creating a new availability set.  This value specifies the fault domain count for the new availability set. Default value: 3 |
 | **Mgmt Public Nic Name** | Applies only if adding public IP to the management interface.  This value sets the name of the public IP name for the firewall(s) management interface. |
+
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | **Mgmt DNS Label Prefix** | Applies only if adding public IP to the management interface.  This value sets the DNS name for the firewall(s) management public IP. |
