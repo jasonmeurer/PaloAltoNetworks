@@ -87,7 +87,7 @@
 						},
 						"caching": "ReadWrite",
 						"createOption": "FromImage",
-						"diskSizeGB": 128
+						"diskSizeGB": 60
 					}
 				},
 				"networkProfile": {
