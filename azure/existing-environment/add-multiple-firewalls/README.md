@@ -1,5 +1,6 @@
 # Deploy Palo Alto Networks Firewalls to Existing VNET
 
+
 [<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmattmclimans%2FPaloAltoNetworks%2Fmaster%2Fazure%2Fexisting-environment%2Fadd-multiple-firewalls%2FazureDeploy.json)
 
 This template deploys a selected number of Palo Alto Networks VM-300 Series firewalls into an existing VNET. Internal Standard Load Balancer (with HA Ports) to an existing set Palo Alto Networks firewalls.  This template must be deployed through PowerShell or through the Azure CLI. Do not deploy this template through the Azure console (see this [guide](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy) for more information).
@@ -51,8 +52,8 @@ The table below describes each parameter in detail.
 | **Mgmt Nic Name** | Sets the name for the firewall(s) private management NIC. |
 | **Untrust Nic Name** | Sets the name for the firewall(s) private management NIC. |
 | **Trust Nic Name** | Sets the name for the firewall(s) private management NIC. |
-| **Admin Username** |  |
-| **Admin Password** |  |
+| **Admin Username** | Sets the username for the firewall(s).  Do not use admin or administrator. |
+| **Admin Password** | Sets the password the admin username entered. |
 | **Virtual Network Resource Group** | Enter the resource group of the virtual network. |
 | **Virtual Network Name** | Enter the name of the EXISTING virtual network.  This virtual network is where the firewall(s) will be deployed. |
 | **Mgmt Subnet Name** | Enter the name of the EXISTING management subnet. |
@@ -67,8 +68,8 @@ The table below describes each parameter in detail.
 | **Internal LB Probe Name** | Applies only if Create-New-LB is selected.  This value sets the name of the health probe. |
 | **Internal LB Probe Port** | Applies only if Create-New-LB is selected.  This is the port the health probe will use to monitor the health of the firewall(s).  Default: 80 |
 | **Internal LB Rule Name** | Applies only if Create-New-LB is selected.  This value sets the internal load balancer's Load Balancing rule name.  This rule leverages HA ports. |
-| **Create New Public LB** |  |
-| **Public LB Name** | Applies only if Create-New-LB is selected.  This value sets the name of the new public load balancer. | 
+| **Create New Public LB** | "Create-New-LB" creates a new public load balancer.  "Use-Existing-LB" adds the firewall(s) to an existing public load balancer.  "Do-Not-Use-LB" does not add the firewall(s) to a public load balancer. |
+| **Public LB Name** | If Create-New-LB is selected, enter the name of the new internal load balancer.  If Use-Existing-LB is selected, enter the name of the existing internal load balancer.  | 
 | **Public LB Frontend Name** | Applies only if Create-New-LB is selected.  This value sets the frontend name for the new public load balancer. |
 | **Public LB Public Ip Name** | Applies only if Create-New-LB is selected.  This value sets the name of the public IP address associated with the new public load balancer. |
 | **Public LB Backend Pool Name** | Applies only if Create-New-LB is selected.  This value sets the name of the new public load balancer's backend pool.  |
