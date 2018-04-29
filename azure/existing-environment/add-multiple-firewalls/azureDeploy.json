@@ -59,9 +59,9 @@
 			"type": "string",
 			"defaultValue": "Unmanaged-Storage-Account",
 			"allowedValues": [
-				"New-Unmanaged-Storage-Account",
-				"Existing-Unmanaged-Storage-Account",
-				"Managed-Storage-Account"
+				"New Unmanaged Storage Account",
+				"Existing Unmanaged Storage Account",
+				"Managed Storage"
 			],
 			"metadata": {
 				"Description": "Select 'Unmanaged-Disk' to deploy OS disk to new unmanaged storage account. Select 'Managed-Disk' to deploy OS disk to a managed disk."
@@ -345,11 +345,13 @@
 		"deployInternalLB_templateUri": "[concat(variables('_artifactsLocation'), 'nic-',parameters('createNewInternalLB'), '.json', variables('_artifactsLocationSasToken'))]",
 		"deployPublicLB_templateUri": "[concat(variables('_artifactsLocation'), 'nic-',parameters('createNewPublicLB'), '.json', variables('_artifactsLocationSasToken'))]",
 		"deployPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-', parameters('storageAccountType'),'.json', variables('_artifactsLocationSasToken'))]",
+		"managedPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-managed.json', variables('_artifactsLocationSasToken'))]",
+		"unmanagedPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-unmanaged.json', variables('_artifactsLocationSasToken'))]",
 		"storageAccountId": "[resourceId(parameters('storageAccountResourceGroup'),'Microsoft.Storage/StorageAccounts',parameters('storageAccountName'))]"
 	},
 	"resources": [
 		{
-			"condition": "[equals(parameters('storageAccountType'), 'New-Unmanaged-Storage-Account')]",
+			"condition": "[equals(parameters('storageAccountType'), 'New Unmanaged Storage Account')]",
 			"type": "Microsoft.Storage/storageAccounts",
 			"name": "[parameters('storageAccountName')]",
 			"apiVersion": "2015-06-15",
@@ -369,7 +371,7 @@
 				"platformUpdateDomainCount": "[parameters('availabilitySetUpdateDomainCount')]"
 			},
 			"sku": {
-				"name": "[if(equals(parameters('storageAccountType'), 'Managed-Storage-Account'), 'Aligned', 'Classic')]"
+				"name": "[if(equals(parameters('storageAccountType'), 'Managed Storage'), 'Aligned', 'Classic')]"
 			}
 		},
 		{
@@ -736,7 +738,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[variables('deployPaloAlto_templateUri')]",
+					"uri": "[if(equals(parameters('storageAccountType'), 'Managed Storage'), variables('managedPaloAlto_templateUri'), variables('unmanagedPaloAlto_templateUri'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
