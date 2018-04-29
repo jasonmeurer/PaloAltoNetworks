@@ -69,7 +69,7 @@ The table below describes each parameter in detail.
 | **Untrust Subnet Name** | Enter the name of the EXISTING untrust subnet. |
 | **Trust Subnet Name** | Enter the name of the EXISTING trust subnet. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
 | ------ | ------ |
 | **Create New Internal LB** | "Create-New-LB" creates a new internal standard load balancer.  "Use-Existing-LB" adds the firewall(s) to an existing internal load balancer.  "Do-Not-Use-LB" does not add the firewall(s) to an internal load balancer. |
 | **Internal LB Name** | If Create-New-LB is selected, enter the name of the new internal load balancer.  If Use-Existing-LB is selected, enter the name of the existing internal load balancer. |
@@ -81,7 +81,7 @@ The table below describes each parameter in detail.
 | **Internal LB Probe Port** | Applies only if Create-New-LB is selected.  This is the port the health probe will use to monitor the health of the firewall(s).  Default: 80 |
 | **Internal LB Rule Name** | Applies only if Create-New-LB is selected.  This value sets the internal load balancer's Load Balancing rule name.  This rule leverages HA ports. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters| Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters| Description |
 | ------ | ------ |
 | **Create New Public LB** | "Create-New-LB" creates a new public load balancer.  "Use-Existing-LB" adds the firewall(s) to an existing public load balancer.  "Do-Not-Use-LB" does not add the firewall(s) to a public load balancer. |
 | **Public LB Name** | If Create-New-LB is selected, enter the name of the new internal load balancer.  If Use-Existing-LB is selected, enter the name of the existing internal load balancer.  | 
