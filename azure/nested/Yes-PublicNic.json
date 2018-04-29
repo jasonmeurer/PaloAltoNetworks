@@ -16,6 +16,12 @@
       },
       "publicIpDnsName": { 
          "type": "string"
+      },
+      "lbName": {
+        "type": "string"
+      },
+      "lbBackendPoolName": {
+        "type": "string"
       }
   },
   "variables": {
