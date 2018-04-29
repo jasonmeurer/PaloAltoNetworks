@@ -42,14 +42,14 @@ The table below describes each parameter in detail.
 | **Admin Username** | Sets the username for the firewall(s).  Do not use admin or administrator. |
 | **Admin Password** | Sets the password the admin username entered. |
 
-| Storage Parameters | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Storage Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | ------ | ------ |
 | **Storage Account Type** | Sets the type of storage account to use for the Firewall's OS disks.  New-Unmanaged-Storage-Account creates a new storage account.  Existing-Unmanaged-Storage-Account uses an existing storage account.  Managed-Storage-Account uses Azure's managed storage disks. |
 | **Storage Account Resource Group** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, enter the name of the resource group to deploy it to.  If adding OS disks to an Existing-Unmanaged-Storage-Account, enter the resource group of the the existing storage account. |
 | **Storage Account Name** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, this will be the name of the new storage account.  If using an Existing-Unmanaged-Storage-Account, enter the name of the existing storage account. |
 | **Os Disk Storage Type** | Sets the disk storage type for the firewall's OS. |
 
-| Availability Set Parameters | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Availability Set Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | ------ | ------ |
 | **New Or Existing Availability Set** | Selects to deploy firewall(s) to a new or existing availability set. |
 | **Availability Set Name** | Enter the name of the availability set to deploy the firewall(s).  If creating a new availability set, enter the name of the new availability set.  If using an existing availability set, enter the name of the existing availability set. |
