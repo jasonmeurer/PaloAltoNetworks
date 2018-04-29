@@ -55,6 +55,18 @@
 				"description": "Select the PAN-OS version to run.  Current recommended release is PAN-OS 8.0.7"
 			}
 		},
+		"adminUsername": {
+			"type": "string",
+			"metadata": {
+				"description": "Enter username for the firewall's administrator account."
+			}
+		},
+		"adminPassword": {
+			"type": "securestring",
+			"metadata": {
+				"description": "Enter password for the firewall's administrator account."
+			}
+		},
 		"storageAccountType": {
 			"type": "string",
 			"defaultValue": "Unmanaged-Storage-Account",
@@ -97,7 +109,7 @@
 			"defaultValue": "Create a new availability set",
 			"allowedValues": [
 				"Create a new availability set",
-				"Add to existing availability set"
+				"Add firewall(s) to existing availability set"
 			],
 			"metadata": {
 				"description": "Standard or Premium storage for OS disk (more info: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage) "
@@ -122,64 +134,6 @@
 			"defaultValue": 3,
 			"metadata": {
 				"description": "Enter the availability set's fault domain count.  Default is 3."
-			}
-		},
-		"applyPublicIpToMgmtNic": {
-			"type": "string",
-			"defaultValue": "Yes",
-			"allowedValues": [
-				"Yes",
-				"No"
-			],
-			"metadata": {
-				"description": "Standard or Premium storage for OS disk (more info: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage) "
-			}
-		},
-		"mgmtPublicNicName": {
-			"type": "string",
-			"defaultValue": "pip-mgmt",
-			"metadata": {
-				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
-			}
-		},
-		"mgmtDNSLabelPrefix": {
-			"type": "string",
-			"defaultValue": "mattmclimans-paloalto-mgmt-dns-name",
-			"metadata": {
-				"description": "Enter the name of DNS label for the public IP's management address.  This must be a globally unique name."
-			}
-		},
-		"mgmtNicName": {
-			"type": "string",
-			"defaultValue": "mgmt-nic",
-			"metadata": {
-				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
-			}
-		},
-		"untrustNicName": {
-			"type": "string",
-			"defaultValue": "untrust-nic",
-			"metadata": {
-				"description": "Enter the name for the firewall's untrust NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
-			}
-		},
-		"trustNicName": {
-			"type": "string",
-			"defaultValue": "trust-nic",
-			"metadata": {
-				"description": "Enter the name for the firewall's trust NIC.  In the Azure portal, the name will appear as [yourentry]-firewallname#"
-			}
-		},
-		"adminUsername": {
-			"type": "string",
-			"metadata": {
-				"description": "Enter username for the firewall's administrator account."
-			}
-		},
-		"adminPassword": {
-			"type": "securestring",
-			"metadata": {
-				"description": "Enter password for the firewall's administrator account."
 			}
 		},
 		"virtualNetworkResourceGroup": {
@@ -212,6 +166,52 @@
 				"description": "Enter the name of the existing subnet where the firewall's trust interface will reside."
 			}
 		},
+		"applyPublicIpToMgmtNic": {
+			"type": "string",
+			"defaultValue": "Yes",
+			"allowedValues": [
+				"Yes",
+				"No"
+			],
+			"metadata": {
+				"description": "Select Yes to add a public IP to the firewall(s) management NICs."
+			}
+		},
+		"mgmtPublicNicName": {
+			"type": "string",
+			"defaultValue": "mgmt-pip",
+			"metadata": {
+				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
+		},
+		"mgmtDNSLabelPrefix": {
+			"type": "string",
+			"defaultValue": "mattmclimans-paloalto-mgmt-dns-name",
+			"metadata": {
+				"description": "Enter the name of DNS label for the public IP's management address.  This must be a globally unique name."
+			}
+		},
+		"mgmtNicName": {
+			"type": "string",
+			"defaultValue": "mgmt-nic",
+			"metadata": {
+				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
+		},
+		"untrustNicName": {
+			"type": "string",
+			"defaultValue": "untrust-nic",
+			"metadata": {
+				"description": "Enter the name for the firewall's untrust NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
+		},
+		"trustNicName": {
+			"type": "string",
+			"defaultValue": "trust-nic",
+			"metadata": {
+				"description": "Enter the name for the firewall's trust NIC.  In the Azure portal, the name will appear as [yourentry]-firewallname#"
+			}
+		},
 		"createNewInternalLB": {
 			"type": "string",
 			"defaultValue": "Create-New-LB",
@@ -231,7 +231,7 @@
 				"description": "Enter the name for the internal standard load balancer."
 			}
 		},
-		"internalLBFrontEndName": {
+		"internalLBFrontendName": {
 			"type": "string",
 			"defaultValue": "Internal-LB-Frontend",
 			"metadata": {
@@ -257,14 +257,14 @@
 				"description": "Enter the name for the load balancer's backend pool.  This will be the Trust interfaces of the firewall(s)."
 			}
 		},
-		"internalLBProbeName": {
+		"internalLBHealthProbeName": {
 			"type": "string",
 			"defaultValue": "Internal-LB-Health-Probe-22",
 			"metadata": {
 				"description": "Enter the name for the load balancer's health probe name."
 			}
 		},
-		"internalLBProbePort": {
+		"internalLBHealthProbePort": {
 			"type": "int",
 			"defaultValue": 22,
 			"metadata": {
@@ -273,10 +273,10 @@
 		},
 		"internalLBRuleName": {
 			"type": "string",
+			"defaultValue": "HA-Ports",
 			"metadata": {
 				"description": "Enter a name for the load balancer rule that will allow HA ports."
-			},
-			"defaultValue": "LB-Rule-HA-Ports"
+			}
 		},
 		"createNewPublicLB": {
 			"type": "string",
@@ -292,15 +292,15 @@
 		},
 		"publicLBName": {
 			"type": "string",
-			"defaultValue": "LB-Rule-HA-Ports"
+			"defaultValue": "Public-LB"
 		},
 		"publicLBFrontendName": {
 			"type": "string",
-			"defaultValue": "Internal-LB-Frontend",
+			"defaultValue": "Public-LB-Frontend",
 		},
 		"publicLBPublicIpName": {
 			"type": "string",
-			"defaultValue": "Internal-Standard-LB",
+			"defaultValue": "Public-Basic-LB",
 		},
 		"publicLBBackendPoolName": {
 			"type": "string",
@@ -308,7 +308,7 @@
 		},
 		"publicLBHealthProbeName": {
 			"type": "string",
-			"defaultValue": "Public-LB-Health-Probe-22",
+			"defaultValue": "Public-LB-Health-Probe-TCP-22",
 		},
 		"publicLBHealthProbePort": {
 			"type": "int",
@@ -454,7 +454,7 @@
 			"properties": {
 				"frontendIPConfigurations": [
 					{
-						"name": "[parameters('internalLBFrontEndName')]",
+						"name": "[parameters('internalLBFrontendName')]",
 						"properties": {
 							"privateIPAddress": "[parameters('internalLBFrontendIP')]",
 							"privateIPAllocationMethod": "Static",
@@ -474,7 +474,7 @@
 						"name": "[parameters('internalLBRuleName')]",
 						"properties": {
 							"frontendIPConfiguration": {
-								"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('internalLBName')), '/frontendIpConfigurations/', parameters('internalLBFrontEndName'))]"
+								"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('internalLBName')), '/frontendIpConfigurations/', parameters('internalLBFrontendName'))]"
 							},
 							"frontendPort": 0,
 							"backendPort": 0,
@@ -487,17 +487,17 @@
 								"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('internalLBName')), '/backendAddressPools/', parameters('internalLBBackendPoolName'))]"
 							},
 							"probe": {
-								"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('internalLBName')), '/probes/', parameters('internalLBProbeName'))]"
+								"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('internalLBName')), '/probes/', parameters('internalLBHealthProbeName'))]"
 							}
 						}
 					}
 				],
 				"probes": [
 					{
-						"name": "[parameters('internalLBProbeName')]",
+						"name": "[parameters('internalLBHealthProbeName')]",
 						"properties": {
 							"protocol": "[variables('internalLBProbeProtocol')]",
-							"port": "[parameters('internalLBProbePort')]",
+							"port": "[parameters('internalLBHealthProbePort')]",
 							"intervalInSeconds": 5,
 							"numberOfProbes": 2
 						}
