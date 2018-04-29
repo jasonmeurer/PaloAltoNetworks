@@ -269,7 +269,7 @@
 			"type": "string",
 			"defaultValue": "HA-Ports",
 			"metadata": {
-				"description": "Enter a name for the load balancer.  This rule enables HA ports."
+				"description": "Enter a the name for the load balancer's rule.  This rule enables HA ports."
 			}
 		},
 		"createNewPublicLB": {
@@ -285,7 +285,7 @@
 		},
 		"publicLBName": {
 			"type": "string",
-			"defaultValue": "Public-LB"
+			"defaultValue": "Public-LB",
 			"metadata": {
 				"description": "Enter the name for the internal standard load balancer."
 			}
@@ -328,15 +328,22 @@
 		"publicLBRuleName": {
 			"type": "string",
 			"defaultValue": "Allow-TCP-22",
-			
+			"metadata": {
+				"description": "Enter a the name for the load balancer's rule."
+			}
 		},
 		"publicLBRuleFrontendPort": {
 			"type": "int",
 			"defaultValue": 22,
+			"metadata": {
+				"description": "Enter the frontend port (TCP) that will be used in the load balancer's rule."
+			}
 		},
 		"publicLBRuleBackendPort": {
 			"type": "int",
-			"defaultValue": 22
+			"defaultValue": 22,
+			"metadata": {
+				"description": "Enter the backend port (TCP) that will be used in the load balancer's rule."
 		}
 	},
 	"variables": {
