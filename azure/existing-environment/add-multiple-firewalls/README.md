@@ -13,17 +13,16 @@ This template deploys a selected number of Palo Alto Networks VM-300 Series fire
 1.  Palo Alto Networks VM-300 Series Firewall(s)
       - Select the number of firewall(s) to deploy (1-5).
 2.  Storage Account
-			- Select to deploy Managed Storage, New Unmanaged Storage Account, or Existing Unmanaged storage account. 
+      - Select to deploy Managed Storage, New Unmanaged Storage Account, or Existing Unmanaged storage account.
 			- Select storage type for the Firewall(s) OS disk.
 3.  Availability Set
-			- Firewalls will be placed in an availability set. 
+      - Firewalls will be placed in an availability set.
 			- Select whether to deploy into new availability set or deploy into an existing availability set.
 4.  Internal Load Balancer
-			- Select to deploy a new internal load balancer, use an existing internal load balancer, or do not use an internal load balancer.
+      - Select to deploy a new internal load balancer, use an existing internal load balancer, or do not use an internal load balancer.
 			- If deploying a new internal load balancer, the load balancer will use Azure's Standard LB with HA Ports.
 5.  Public Load Balancer
-			- Select to deploy a new public load balancer, use an existing public load balancer, or do not use a public load balancer.
-6.  
+      - Select to deploy a new public load balancer, use an existing public load balancer, or do not use a public load balancer.
 
 ### Template Pre-requisites
 - Existing VNET with subnets for Mgmt, Untrust, and Trust subnets.
@@ -44,7 +43,8 @@ The table below describes each parameter in detail.
 | **Storage Account Resource Group** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, enter the name of the resource group to deploy it to.  If adding OS disks to an Existing-Unmanaged-Storage-Account, enter the resource group of the the existing storage account. |
 | **Storage Account Name** | Used only if using Unmanaged disks.  If creating a New-Unmanaged-Storage-Account, this will be the name of the new storage account.  If using an Existing-Unmanaged-Storage-Account, enter the name of the existing storage account. |
 | **Os Disk Storage Type** | Sets the disk storage type for the firewall's OS. |
-| **Firewall Availability Set Name** | Enter the name of the availability set to deploy the firewall(s).  If using an existing Availability Set, enter the name of the existing Availability set. |
+| **newOrExistingAvailabilitySet** | Selects to deploy firewall(s) to a new or existing availability set. |
+| **Availability Set Name** | Enter the name of the availability set to deploy the firewall(s).  If creating a new availability set, enter the name of the new availability set.  If using an existing availability set, enter the name of the existing availability set. |
 | **Availability Set Update Domain Count** | Applies only if creating a new availability set.  This value sets the update domain count for the new availability set.  Default value: 5 |
 | **Availability Set Fault Domain Count** | Applies only if creating a new availability set.  This value specifies the fault domain count for the new availability set. Default value: 3 |
 | **Mgmt Public Nic Name** | Applies only if adding public IP to the management interface.  This value sets the name of the public IP name for the firewall(s) management interface. |
