@@ -82,7 +82,7 @@
     						"version": "[parameters('imageVersion')]",
     					},
     					"osDisk": {
-    						"name": "[concat('Disk-',parameters('firewallName'), '-OS')]",
+    						"name": "[concat(parameters('firewallName'), 'os-disk')]",
     						"vhd": {
     							"uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('firewallName'), '-', parameters('imageOffer'), '-', parameters('imageSku'), '.vhd')]"
     						},
