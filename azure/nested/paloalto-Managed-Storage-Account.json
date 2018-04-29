@@ -81,7 +81,7 @@
 						"version": "[parameters('imageVersion')]",
 					},
 					"osDisk": {
-						"name": "[concat(parameters('firewallName'), 'os-disk')]"
+						"name": "[concat(parameters('firewallName'), 'os-disk')]",
 						"managedDisk": {
 							"storageAccountType": "[parameters('osDiskStorageType')]"
 						},
