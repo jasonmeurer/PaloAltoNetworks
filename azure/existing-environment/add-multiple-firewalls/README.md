@@ -69,7 +69,7 @@ The table below describes each parameter in detail.
 | **Untrust Subnet Name** | Enter the name of the EXISTING untrust subnet. |
 | **Trust Subnet Name** | Enter the name of the EXISTING trust subnet. |
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
 | ------ | ------ |
 | **Create New Internal LB** | "Create-New-LB" creates a new internal standard load balancer.  "Use-Existing-LB" adds the firewall(s) to an existing internal load balancer.  "Do-Not-Use-LB" does not add the firewall(s) to an internal load balancer. |
 | **Internal LB Name** | If Create-New-LB is selected, enter the name of the new internal load balancer.  If Use-Existing-LB is selected, enter the name of the existing internal load balancer. |
