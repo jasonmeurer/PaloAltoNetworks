@@ -344,6 +344,7 @@
 			"defaultValue": 22,
 			"metadata": {
 				"description": "Enter the backend port (TCP) that will be used in the load balancer's rule."
+			}
 		}
 	},
 	"variables": {
