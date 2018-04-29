@@ -12,7 +12,7 @@
 		"numberOfFirewalls": {
 			"type": "int",
 			"minValue": 1,
-			"maxValue": 20,
+			"maxValue": 5,
 			"defaultValue": 2,
 			"metadata": {
 				"description": "Select the number of VM-Series firewalls to deploy.  Minimum is 1, maximum is 5."
@@ -81,14 +81,12 @@
 		},
 		"storageAccountResourceGroup": {
 			"type": "string",
-			"defaultValue": "test-group-1",
 			"metadata": {
 				"description": "Enter the resource group of the new or existing storage account."
 			}
 		},
 		"storageAccountName": {
 			"type": "string",
-			"defaultValue": "mclimansstoragemrm",
 			"metadata": {
 				"description": "Enter the name of your existing or new storage account name.  This value must be globally unique."
 			}
@@ -106,7 +104,6 @@
 		},
 		"newOrExistingAvailabilitySet": {
 			"type": "string",
-			"defaultValue": "Create a new availability set",
 			"allowedValues": [
 				"Create a new availability set",
 				"Add firewall(s) to existing availability set"
@@ -136,16 +133,16 @@
 				"description": "Enter the availability set's fault domain count.  Default is 3."
 			}
 		},
-		"virtualNetworkResourceGroup": {
-			"type": "string",
-			"metadata": {
-				"description": "Enter the VNET's existing resource group name"
-			}
-		},
 		"virtualNetworkName": {
 			"type": "string",
 			"metadata": {
 				"description": "Enter the existing VNET name to deploy the firewalls"
+			}
+		},
+		"virtualNetworkResourceGroup": {
+			"type": "string",
+			"metadata": {
+				"description": "Enter the VNET's existing resource group name"
 			}
 		},
 		"mgmtSubnetName": {
@@ -168,7 +165,6 @@
 		},
 		"applyPublicIpToMgmtNic": {
 			"type": "string",
-			"defaultValue": "Yes",
 			"allowedValues": [
 				"Yes",
 				"No"
@@ -186,7 +182,6 @@
 		},
 		"mgmtDNSLabelPrefix": {
 			"type": "string",
-			"defaultValue": "mattmclimans-paloalto-mgmt-dns-name",
 			"metadata": {
 				"description": "Enter the name of DNS label for the public IP's management address.  This must be a globally unique name."
 			}
@@ -214,7 +209,6 @@
 		},
 		"createNewInternalLB": {
 			"type": "string",
-			"defaultValue": "Create-New-LB",
 			"allowedValues": [
 				"Create-New-LB",
 				"Use-Existing-LB",
@@ -254,33 +248,32 @@
 			"type": "string",
 			"defaultValue": "Internal-LB-Backend-Pool",
 			"metadata": {
-				"description": "Enter the name for the load balancer's backend pool.  This will be the Trust interfaces of the firewall(s)."
+				"description": "Enter the name for the load balancer's backend pool.  The backend pool will be assigned to the firewall(s) trust interfaces."
 			}
 		},
 		"internalLBHealthProbeName": {
 			"type": "string",
 			"defaultValue": "Internal-LB-Health-Probe-22",
 			"metadata": {
-				"description": "Enter the name for the load balancer's health probe name."
+				"description": "Enter the name for the load balancer's health probe."
 			}
 		},
 		"internalLBHealthProbePort": {
 			"type": "int",
 			"defaultValue": 22,
 			"metadata": {
-				"description": "Enter the TCP port that the Load Balancer's health probe will use to monitor the health of the firewall(s)."
+				"description": "Enter the TCP port that the health probe will use to monitor the firewall(s)."
 			}
 		},
 		"internalLBRuleName": {
 			"type": "string",
 			"defaultValue": "HA-Ports",
 			"metadata": {
-				"description": "Enter a name for the load balancer rule that will allow HA ports."
+				"description": "Enter a name for the load balancer.  This rule enables HA ports."
 			}
 		},
 		"createNewPublicLB": {
 			"type": "string",
-			"defaultValue": "Create-New-LB",
 			"allowedValues": [
 				"Create-New-LB",
 				"Use-Existing-LB",
@@ -293,30 +286,49 @@
 		"publicLBName": {
 			"type": "string",
 			"defaultValue": "Public-LB"
+			"metadata": {
+				"description": "Enter the name for the internal standard load balancer."
+			}
 		},
 		"publicLBFrontendName": {
 			"type": "string",
 			"defaultValue": "Public-LB-Frontend",
+			"metadata": {
+				"description": "Enter the name for the internal load balancer's front end IP."
+			}
 		},
 		"publicLBPublicIpName": {
 			"type": "string",
-			"defaultValue": "Public-Basic-LB",
+			"defaultValue": "Public-LB-PIP",
+			"metadata": {
+				"description": "Enter the name for the public IP associated with the Public Load Balancer."
+			}
 		},
 		"publicLBBackendPoolName": {
 			"type": "string",
 			"defaultValue": "Palo-Untrust-Pool",
+			"metadata": {
+				"description": "Enter the name for the load balancer's backend pool.  The backend pool will be assigned to the firewall(s) untrust interfaces."
+			}
 		},
 		"publicLBHealthProbeName": {
 			"type": "string",
 			"defaultValue": "Public-LB-Health-Probe-TCP-22",
+			"metadata": {
+				"description": "Enter the name for the load balancer's health probe."
+			}
 		},
 		"publicLBHealthProbePort": {
 			"type": "int",
 			"defaultValue": 22,
+			"metadata": {
+				"description": "Enter the TCP port that the health probe will use to monitor the firewall(s)."
+			}
 		},
 		"publicLBRuleName": {
 			"type": "string",
 			"defaultValue": "Allow-TCP-22",
+			
 		},
 		"publicLBRuleFrontendPort": {
 			"type": "int",
