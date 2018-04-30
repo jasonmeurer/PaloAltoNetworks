@@ -44,6 +44,7 @@ The table below describes each parameter in detail.
 | **Admin Password** | Sets the local password for the username. |
 
 </br>
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Storage&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
 | **Storage Account Type** | Sets the type of storage account to use for the OS disk(s) of the firewall(s).  **New Unmanaged Storage Account** creates a new storage account in the defined resource group.  **Existing Unmanaged Storage Account** uses an existing storage account in the defined resource group.  **Managed Storage** uses Azure's managed disks. |
@@ -52,6 +53,7 @@ The table below describes each parameter in detail.
 | **Os Disk Storage Type** | Sets the storage type for OS disk of the firewall(s). |
 
 </br>
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Availability&nbsp;Set&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
 | **New Or Existing Availability Set** | Select **Create a new availability set** to create a new availability set for the firewall(s).  Select **Add firewall(s) to existing availability set** to add the firewalls to an existing availability set. |
@@ -60,6 +62,7 @@ The table below describes each parameter in detail.
 | **Availability Set Fault Domain Count** | Applies only to a new availability set.  This value sets the fault domain count for the new availability set. Default value: 3 |
 
 </br>
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
 | **Virtual Network Resource Group** | Enter the resource group of the existing virtual network. |
@@ -75,6 +78,7 @@ The table below describes each parameter in detail.
 | **Mgmt DNS Label Prefix** | Applies only if adding public IP to the management NIC(s).  This value sets the DNS name for the firewall(s) management public IP. |
 
 </br>
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
 | ------ | ------ |
 | **Create New Internal LB** | **Create new internal load balancer** creates a new internal standard load balancer and applies the trust NIC(s) as the backend pool.  **Use existing internal load balancer** uses an existing internal load balancer and applies the trust NIC(s) as the backend pool.  **Do not use load balancer** will omit applying the trust NIC(s) to a load balancer.  |
@@ -88,6 +92,7 @@ The table below describes each parameter in detail.
 | **Internal LB Rule Name** | Applies only if creating a new internal load balancer.  This parameter sets the internal load balancer's Load Balancing rule name.  This rule leverages HA ports. |
 
 </br>
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters| Description |
 | ------ | ------ |
 | **Create New Public LB** | **Create new public load balancer** creates a new internal standard load balancer and applies the trust NIC(s) as the backend pool.  **Use existing public load balancer** uses an existing internal load balancer and applies the trust NIC(s) as the backend pool.  **Do not use load balancer** will omit applying the trust NIC(s) to a load balancer. |
