@@ -163,6 +163,27 @@
 				"description": "Enter the name of the existing subnet where the firewall's trust interface will reside."
 			}
 		},
+		"mgmtNicName": {
+			"type": "string",
+			"defaultValue": "mgmt-nic",
+			"metadata": {
+				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
+		},
+		"untrustNicName": {
+			"type": "string",
+			"defaultValue": "untrust-nic",
+			"metadata": {
+				"description": "Enter the name for the firewall's untrust NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
+			}
+		},
+		"trustNicName": {
+			"type": "string",
+			"defaultValue": "trust-nic",
+			"metadata": {
+				"description": "Enter the name for the firewall's trust NIC.  In the Azure portal, the name will appear as [yourentry]-firewallname#"
+			}
+		},
 		"applyPublicIpToMgmtNic": {
 			"type": "string",
 			"allowedValues": [
@@ -184,27 +205,6 @@
 			"type": "string",
 			"metadata": {
 				"description": "Enter the name of DNS label for the public IP's management address.  This must be a globally unique name."
-			}
-		},
-		"mgmtNicName": {
-			"type": "string",
-			"defaultValue": "mgmt-nic",
-			"metadata": {
-				"description": "Enter the name of the management NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
-			}
-		},
-		"untrustNicName": {
-			"type": "string",
-			"defaultValue": "untrust-nic",
-			"metadata": {
-				"description": "Enter the name for the firewall's untrust NIC.  In the Azure portal name will appear as [yourentry]-firewallname#"
-			}
-		},
-		"trustNicName": {
-			"type": "string",
-			"defaultValue": "trust-nic",
-			"metadata": {
-				"description": "Enter the name for the firewall's trust NIC.  In the Azure portal, the name will appear as [yourentry]-firewallname#"
 			}
 		},
 		"createNewInternalLB": {
