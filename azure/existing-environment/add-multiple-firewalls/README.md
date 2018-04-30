@@ -11,13 +11,14 @@ This template deploys a selected number of Palo Alto Networks VM-300 Series fire
 
 ### Template Deployments
 1.  Palo Alto Networks VM-300 Series Firewall(s)
-      - Select the number of firewall(s) to deploy (1-5).
+      - Select between 1-5 firewall(s) to deploy.
+      - Select to deploy firewall(s) with public IP on the management interface.
 2.  Storage Account
       - Select to deploy Managed Storage, New Unmanaged Storage Account, or Existing Unmanaged storage account.
 			- Select storage type for the Firewall(s) OS disk.
 3.  Availability Set
       - Firewalls will be placed in an availability set.
-			- Select whether to deploy into new availability set or deploy into an existing availability set.
+			- Select to use new or existing availability set.
 4.  Internal Load Balancer
       - Select to deploy a new internal load balancer, use an existing internal load balancer, or do not use an internal load balancer.
 			- If deploying a new internal load balancer, the load balancer will use Azure's Standard LB with HA Ports.
@@ -34,7 +35,7 @@ The table below describes each parameter in detail.
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firewall&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | ------ | ------ |
-| **Firewall Name** | The name of the firewall to deploy.  This name will have a number appended to it.  For example, if deploying two firewalls and the firewall name is Palo-Alto, the first firewall will be named Palo-Alto0, second firewall will be named Palo-Alto1. |
+| **Firewall Name** | The name of the firewall to deploy.  This name will have a number appended to it.  For example, if deploying 3 firewalls with the firewall name is **AcmeFW**, the first, second, and third firewall will have the names **AcmeFW0**, **AcmeFW1**, and **AcmeFW2**, respectively. |
 | **Number Of Firewalls** | This number indicates how many firewalls to deploy.  Entry must be an integer between 1-5. |
 | **Virtual Machine Size** | Sets the Azure Virtual Machine size for the firewalls.  |
 | **Image Sku** | Sets the license for the firewalls.  BYOL ("Bring your own license") requires a license from Palo Alto Networks.  Bundle1, is a pay-as-you-go license that contains Threat Prevention and Premium Support subscriptions.  Bundle2, is a pay-as-you-go license that contains Threat Prevention, URL Filtering, WildFire, GlobalProtect, and Premium Support subscriptions.|
