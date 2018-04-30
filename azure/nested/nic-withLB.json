@@ -1,37 +1,43 @@
 {
-	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"nicName": {
-			"type": "string"
-		},
-		"subnetRef": {
-			"type": "string"
-		},
-		"privateIp": {
-			"type": "string"
-		},
-		"publicIpName": {
-			"type": "string"
-		},
-		"lbName": {
-			"type": "string"
-		},
-		"lbBackendPoolName": {
-			"type": "string"
-		},
-		"internalLBResourceGroup": {
-			"type": "string"
-		}
-	},
-	"variables": {
-		"internalLbId": "[resourceId(parameters('internalLBResourceGroup'),concat('Microsoft.Network','/','loadBalancers'),parameters('lbName'))]",
-	},
-	"resources": [{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "nicName": {
+        "type": "string"
+      },
+      "subnetRef": {
+        "type": "string"
+      },
+      "privateIp": {
+        "type": "string"
+      },
+      "publicIpName": {
+        "type": "string"
+      },
+      "lbName": {
+        "type": "string"
+      },
+      "lbBackendPoolName": {
+        "type": "string"
+      },
+      "internalLBResourceGroup": {
+      	"type": "string"
+      }
+    },
+    "variables": {
+    		"vnetId": "[resourceId('mrm-resource-group',concat('Microsoft.Network','/','virtualNetworks'),'fwVNET')]",
+				"internalLbId": "[resourceId('test-group-3',concat('Microsoft.Network','/','loadBalancers'), 'Internal-Standard-LB-Test')]",
+				"nicRef": "[resourceId('mrm-resource-group',concat('Microsoft.Network','/','networkInterfaces'),'trust-nic-matthew-fw0')]"
+    },
+    "resources": [
+        {
 			"apiVersion": "2017-05-10",
-			"name": "[parameters('nicName')]",
+			"name": "nestedTemplate",
 			"type": "Microsoft.Resources/deployments",
 			"resourceGroup": "[parameters('internalLBResourceGroup')]",
+						"dependsOn": [
+				"[concat(variables('trustNicNameRef'))]"
+			],
 			"properties": {
 				"mode": "Incremental",
 				"template": {
@@ -41,20 +47,20 @@
 					"variables": {},
 					"resources": [{
 							"type": "Microsoft.Network/networkInterfaces",
-							"name": "[parameters('nicName')]",
+							"name": "[concat(variables('trustNicNameRef'))]",
 							"apiVersion": "2015-06-15",
 							"location": "East US",
 							"properties": {
 								"ipConfigurations": [{
 										"name": "ipconfig1",
 										"properties": {
-											"privateIPAllocationMethod": "Static",
-											"privateIPAddress": "[parameters('privateIp')]",
+											"privateIPAllocationMethod": "Dynamic",
+											"privateIPAddress": "[reference(concat(variables('nicRef'))).ipConfigurations[0].properties.privateIPAddress]",
 											"subnet": {
-												"id": "[parameters('subnetRef')]"
+												"id": "[concat(variables('vnetId'), '/subnets/', parameters('internalLBSubnetName'))]"
 											},
 											"loadBalancerBackendAddressPools": [{
-													"id": "[concat(variables('internalLbId'),'/backendAddressPools/', parameters('lbBackendPoolName'))]"
+													"id": "[concat(variables('internalLbId'),'/backendAddressPools/', parameters('internalLBBackendPoolName'))]"
 												}
 											]
 										}
@@ -66,5 +72,5 @@
 				}
 			}
 		}
-	]
+    ]
 }
