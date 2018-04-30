@@ -35,9 +35,6 @@
 			"name": "nestedTemplate",
 			"type": "Microsoft.Resources/deployments",
 			"resourceGroup": "[parameters('internalLBResourceGroup')]",
-						"dependsOn": [
-				"[concat(variables('trustNicNameRef'))]"
-			],
 			"properties": {
 				"mode": "Incremental",
 				"template": {
