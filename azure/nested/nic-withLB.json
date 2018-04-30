@@ -3,28 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "nicName": {
-        "type": "string",
-        "defaultValue":"trust-nic-2"
+        "type": "string"
       },
       "subnetRef": {
-        "type": "string",
-        "defaultValue": "Trust"
+        "type": "string"
       },
       "privateIp": {
-        "type": "string",
-        "defaultValue": "192.168.2.4"
+        "type": "string"
       },
       "publicIpName": {
-        "type": "string",
-        "defaultValue": "trust-nic-matthew-fw0"
+        "type": "string"
       },
       "lbName": {
-        "type": "string",
-        "defaultValue": "Internal-Standard-LB-Test"
+        "type": "string"
       },
       "lbBackendPoolName": {
-        "type": "string",
-        "defaultValue": "Palo-Trust-Pool"
+        "type": "string"
       },
       "internalLBResourceGroup": {
       	"type": "string"
@@ -36,9 +30,9 @@
     "resources": [
         {
             "apiVersion": "2017-05-10",
-            "name": "trust-nic-2",
+            "name": "[parameters('nicName')]",
             "type": "Microsoft.Resources/deployments",
-            "resourceGroup": "test-group-3",
+            "resourceGroup": "[parameters('internalLBResourceGroup')]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
