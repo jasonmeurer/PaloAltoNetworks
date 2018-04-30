@@ -47,7 +47,7 @@
 					"variables": {},
 					"resources": [{
 							"type": "Microsoft.Network/networkInterfaces",
-							"name": "[concat(variables('trustNicNameRef'))]",
+							"name": "trust-nic-matthew-fw0",
 							"apiVersion": "2015-06-15",
 							"location": "East US",
 							"properties": {
@@ -57,7 +57,7 @@
 											"privateIPAllocationMethod": "Dynamic",
 											"privateIPAddress": "[reference(concat(variables('nicRef'))).ipConfigurations[0].properties.privateIPAddress]",
 											"subnet": {
-												"id": "[concat(variables('vnetId'), '/subnets/', parameters('internalLBSubnetName'))]"
+												"id": "[concat(variables('vnetId'), '/subnets/', 'Trust')]"
 											},
 											"loadBalancerBackendAddressPools": [{
 													"id": "[concat(variables('internalLbId'),'/backendAddressPools/', parameters('internalLBBackendPoolName'))]"
