@@ -44,6 +44,7 @@ The table below describes each parameter in detail.
 | **Admin Password** | Sets the local password for the username. |
 
 </br>
+</br>
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Storage&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
@@ -53,6 +54,7 @@ The table below describes each parameter in detail.
 | **Os Disk Storage Type** | Sets the storage type for OS disk of the firewall(s). |
 
 </br>
+</br>
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Availability&nbsp;Set&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 | ------ | ------ |
@@ -61,6 +63,7 @@ The table below describes each parameter in detail.
 | **Availability Set Update Domain Count** | Applies only to a new availability set.  This value sets the update domain count for the new availability set.  Default value: 5 |
 | **Availability Set Fault Domain Count** | Applies only to a new availability set.  This value sets the fault domain count for the new availability set. Default value: 3 |
 
+</br>
 </br>
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description |
@@ -78,6 +81,7 @@ The table below describes each parameter in detail.
 | **Mgmt DNS Label Prefix** | Applies only if adding public IP to the management NIC(s).  This value sets the DNS name for the firewall(s) management public IP. |
 
 </br>
+</br>
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters | Description |
 | ------ | ------ |
@@ -91,6 +95,7 @@ The table below describes each parameter in detail.
 | **Internal LB Probe Port** | Applies only if creating a new internal load balancer.  This is the port the health probe will use to monitor the health of the firewall(s).  Default: 80 |
 | **Internal LB Rule Name** | Applies only if creating a new internal load balancer.  This parameter sets the internal load balancer's Load Balancing rule name.  This rule leverages HA ports. |
 
+</br>
 </br>
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public&nbsp;Load&nbsp;Balancer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Parameters| Description |
