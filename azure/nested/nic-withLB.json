@@ -1,54 +1,82 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
       "nicName": {
-        "type": "string"
+        "type": "string",
+        "defaultValue":"trust-nic-2"
       },
       "subnetRef": {
-          "type": "string"
+        "type": "string",
+        "defaultValue": "Trust"
       },
       "privateIp": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "192.168.2.4"
       },
       "publicIpName": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "trust-nic-matthew-fw0"
       },
       "lbName": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "Internal-Standard-LB-Test"
       },
       "lbBackendPoolName": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "Palo-Trust-Pool"
+      },
+      "internalLBResourceGroup": {
+      	"type": "string"
       }
-  },
-  "variables": {
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Network/networkInterfaces",
-      "name": "[parameters('nicName')]",
-      "apiVersion": "2018-03-01",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "ipConfigurations": [
-          {
-            "name": "ipconfig1",
+    },
+    "variables": {
+    "internalLbId": "[resourceId(parameters('internalLBResourceGroup'),concat('Microsoft.Network','/','loadBalancers'),parameters('lbName'))]",
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "name": "trust-nic-2",
+            "type": "Microsoft.Resources/deployments",
+            "resourceGroup": "test-group-3",
             "properties": {
-              "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[parameters('privateIp')]",
-              "subnet": {
-                "id": "[parameters('subnetRef')]"
-                },
-              "loadBalancerBackendAddressPools": [
-                {
-			      "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('lbName')), '/backendAddressPools/', parameters('lbBackendPoolName'))]"
-                  }
-              ]
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {
+                        		
+                    },
+                    "resources": [
+                        {
+                            "type": "Microsoft.Network/networkInterfaces",
+                            "name": "[parameters('nicName')]",
+                            "apiVersion": "2015-06-15",
+                            "location": "East US",
+                            "properties": {
+															"ipConfigurations": [
+																{
+																	"name": "ipconfig1",
+																	"properties": {
+																		"privateIPAllocationMethod": "Static",
+																		"privateIPAddress": "[parameters('privateIp')]",
+																		"subnet": {
+																			"id": "[parameters('subnetRef')]"
+																			},
+																		"loadBalancerBackendAddressPools": [
+																			{
+																	"id": "[concat(variables('internalLbId'),'/backendAddressPools/', parameters('lbBackendPoolName'))]"
+																				}
+																		]
+																	}
+																}
+															]
+														}
+                        }
+                    ]
+                }
             }
-          }
-        ]
-      }
-    }
-  ],
-  "outputs": {}
+        }
+    ]
 }
