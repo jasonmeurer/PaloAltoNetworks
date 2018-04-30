@@ -210,9 +210,9 @@
 		"createNewInternalLB": {
 			"type": "string",
 			"allowedValues": [
-				"Create-New-LB",
-				"Use-Existing-LB",
-				"Do-Not-Use-LB"
+				"Create new internal load balancer",
+				"Use existing internal load balancer",
+				"Do not use load balancer"
 			],
 			"metadata": {
 				"description": "Select 'Yes' to deploy new Public LB.  Public LB will use the Untrust NICs of the firewalls as its backend pool."
@@ -246,7 +246,7 @@
 		},
 		"internalLBBackendPoolName": {
 			"type": "string",
-			"defaultValue": "Internal-LB-Backend-Pool",
+			"defaultValue": "Firewall-Trust-Pool",
 			"metadata": {
 				"description": "Enter the name for the load balancer's backend pool.  The backend pool will be assigned to the firewall(s) trust interfaces."
 			}
@@ -275,9 +275,9 @@
 		"createNewPublicLB": {
 			"type": "string",
 			"allowedValues": [
-				"Create-New-LB",
-				"Use-Existing-LB",
-				"Do-Not-Use-LB"
+				"Create new public load balancer",
+				"Use existing public load balancer",
+				"Do not use load balancer"
 			],
 			"metadata": {
 				"description": "Select 'Yes' to deploy new Public LB.  Public LB will use the Untrust NICs of the firewalls as its backend pool."
@@ -306,7 +306,7 @@
 		},
 		"publicLBBackendPoolName": {
 			"type": "string",
-			"defaultValue": "Palo-Untrust-Pool",
+			"defaultValue": "Firewall-Untrust-Pool",
 			"metadata": {
 				"description": "Enter the name for the load balancer's backend pool.  The backend pool will be assigned to the firewall(s) untrust interfaces."
 			}
@@ -358,16 +358,15 @@
 		"trustNicNameRef": "[concat(parameters('trustNicName'),'-',parameters('firewallName'))]",
 		"imagePublisher": "paloaltonetworks",
 		"imageOffer": "vmseries1",
+		"storageAccountId": "[resourceId(parameters('storageAccountResourceGroup'),'Microsoft.Storage/StorageAccounts',parameters('storageAccountName'))]",
 		"internalLBProbeProtocol": "TCP",
 		"_artifactsLocationSasToken": "",
 		"_artifactsLocation": "https://raw.githubusercontent.com/mattmclimans/PaloAltoNetworks/master/azure/nested/",
-		"deployMgmtPIP_templateUri": "[concat(variables('_artifactsLocation'), 'nic-PublicIP.json', variables('_artifactsLocationSasToken'))]",
-		"deployInternalLB_templateUri": "[concat(variables('_artifactsLocation'), 'nic-',parameters('createNewInternalLB'), '.json', variables('_artifactsLocationSasToken'))]",
-		"deployPublicLB_templateUri": "[concat(variables('_artifactsLocation'), 'nic-',parameters('createNewPublicLB'), '.json', variables('_artifactsLocationSasToken'))]",
-		"deployPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-', parameters('storageAccountType'),'.json', variables('_artifactsLocationSasToken'))]",
+		"nicWithPIP_templateUri": "[concat(variables('_artifactsLocation'), 'nic-withPIP.json', variables('_artifactsLocationSasToken'))]",
+		"nicWithLB_templateUri": "[concat(variables('_artifactsLocation'),'nic-withLB.json', variables('_artifactsLocationSasToken'))]",
+		"nicWithoutLB_templateUri": "[concat(variables('_artifactsLocation'),'nic-withoutLB.json', variables('_artifactsLocationSasToken'))]",
 		"managedPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-managed.json', variables('_artifactsLocationSasToken'))]",
-		"unmanagedPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-unmanaged.json', variables('_artifactsLocationSasToken'))]",
-		"storageAccountId": "[resourceId(parameters('storageAccountResourceGroup'),'Microsoft.Storage/StorageAccounts',parameters('storageAccountName'))]"
+		"unmanagedPaloAlto_templateUri": "[concat(variables('_artifactsLocation'),'paloalto-unmanaged.json', variables('_artifactsLocationSasToken'))]"
 	},
 	"resources": [
 		{
@@ -395,7 +394,7 @@
 			}
 		},
 		{
-			"condition": "[equals(parameters('createNewPublicLB'), 'Create-New-LB')]",
+			"condition": "[equals(parameters('createNewPublicLB'), 'Create new public load balancer')]",
 			"type": "Microsoft.Network/loadBalancers",
 			"name": "[parameters('publicLBName')]",
 			"apiVersion": "2017-10-01",
@@ -463,7 +462,7 @@
 			}
 		},  
 		{
-			"condition": "[equals(parameters('createNewInternalLB'), 'Create-New-LB')]",
+			"condition": "[equals(parameters('createNewInternalLB'), 'Create new internal load balancer')]",
 			"type": "Microsoft.Network/loadBalancers",
 			"name": "[parameters('internalLBName')]",
 			"apiVersion": "2017-10-01",
@@ -632,7 +631,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[if(equals(parameters('applyPublicIpToMgmtNic'), 'Yes'), variables('deployMgmtPIP_templateUri'), variables('deployPublicLB_templateUri'))]",
+					"uri": "[if(equals(parameters('applyPublicIpToMgmtNic'), 'Yes'), variables('nicWithPIP_templateUri'), variables('nicWithoutLB_templateUri'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -674,7 +673,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[variables('deployPublicLB_templateUri')]",
+					"uri": "[if(equals(parameters('createNewPublicLB'), 'Do not use load balancer'), variables('nicWithoutLB_templateUri'), variables('nicWithLB_templateUri'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -716,7 +715,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[variables('deployInternalLB_templateUri')]",
+					"uri": "[if(equals(parameters('createNewInternalLB'), 'Do not use load balancer'), variables('nicWithoutLB_templateUri'), variables('nicWithLB_templateUri'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
