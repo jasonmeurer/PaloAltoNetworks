@@ -9,7 +9,7 @@
 			},
 			"defaultValue": "PaloAlto"
 		},
-		"numberofFirewalls": {
+		"numberOfFirewalls": {
 			"type": "int",
 			"minValue": 1,
 			"maxValue": 5,
@@ -549,7 +549,7 @@
 			"location": "[resourceGroup().location]",
 			"copy": {
 				"name": "mgmtNicLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"ipConfigurations": [
@@ -575,7 +575,7 @@
 			],
 			"copy": {
 				"name": "untrustNicLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"ipConfigurations": [
@@ -601,7 +601,7 @@
 			],
 			"copy": {
 				"name": "trustNicLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"ipConfigurations": [
@@ -626,7 +626,7 @@
 			],
 			"copy": {
 				"name": "mgmtStaticNicLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"mode": "Incremental",
@@ -668,7 +668,7 @@
 			],
 			"copy": {
 				"name": "untrustStaticNicLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"mode": "Incremental",
@@ -710,7 +710,7 @@
 			],
 			"copy": {
 				"name": "trustStaticNicLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"mode": "Incremental",
@@ -752,7 +752,7 @@
 			],
 			"copy": {
 				"name": "firewallLoop",
-				"count": "[parameters('numberofFirewalls')]"
+				"count": "[parameters('numberOfFirewalls')]"
 			},
 			"properties": {
 				"mode": "Incremental",
