@@ -44,6 +44,7 @@
 							"apiVersion": "2015-06-15",
 							"location": "East US",
 							"properties": {
+								 "mode": "Incremental",
 								"ipConfigurations": [{
 										"name": "ipconfig1",
 										"properties": {
@@ -53,7 +54,7 @@
 												"id": "[parameters('subnetRef')]"
 											},
 											"loadBalancerBackendAddressPools": [{
-													"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('lbName')), '/backendAddressPools/', parameters('lbBackendPoolName'))]"
+													"id": "[concat(variables('internalLbId'),'/backendAddressPools/', parameters('lbBackendPoolName'))]"
 												}
 											]
 										}
