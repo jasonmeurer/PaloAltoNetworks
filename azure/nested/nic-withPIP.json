@@ -14,9 +14,6 @@
       "publicIpName": { 
          "type": "string"
       },
-      "publicIpDnsName": { 
-         "type": "string"
-      },
       "lbName": {
         "type": "string"
       },
@@ -38,9 +35,6 @@
       "properties": {
         "publicIPAllocationMethod": "Static",
         "idleTimeoutInMinutes": 4,
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('publicIpDnsName')]"
-          }
         }
     },
     {
