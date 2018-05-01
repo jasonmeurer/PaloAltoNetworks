@@ -6,7 +6,7 @@
 This template deploys a selected number of Palo Alto Networks VM-300 Series firewalls into an existing VNET. 
 </br>
 <p align="center"> 
-<img src="https://github.com/mattmclimans/tools/blob/master/images/img-2.png">
+<img src="https://github.com/mattmclimans/tools/blob/master/images/img-3.png">
 </p>
 
 ### Template Deployments
