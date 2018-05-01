@@ -11,9 +11,13 @@
 		},
 		"numberOfFirewalls": {
 			"type": "int",
-			"minValue": 1,
-			"maxValue": 5,
-			"defaultValue": 2,
+			"allowedValues": [
+				1,
+				2,
+				3,
+				4,
+				5
+			],
 			"metadata": {
 				"description": "Select the number of VM-Series firewalls to deploy.  Minimum is 1, maximum is 5."
 			}
