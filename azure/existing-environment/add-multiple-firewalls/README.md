@@ -112,6 +112,3 @@ The table below describes each parameter in detail.
 | Public LB Rule Name | Applies only if creating a new public load balancer.  This parameter sets the new public load balancer's first load balancing rule. |
 | Public LB Rule Frontend Port | Applies only if creating a new public load balancer.  This parameter sets the load balancing rule's frontend port. |
 | Public LB Rule Backend Port | Applies only if creating a new public load balancer.  This parameter sets the  load balancing rule's backend port. |
-
-### Diagram
-The diagram below illustrates the features that can be deployed through this template.
