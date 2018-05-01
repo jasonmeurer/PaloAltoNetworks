@@ -18,7 +18,7 @@
 				3,
 				4,
 				5
-			]
+			],
 			"metadata": {
 				"description": "Select the number of VM-Series firewalls to deploy.  Minimum is 1, maximum is 5."
 			}
