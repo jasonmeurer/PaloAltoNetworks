@@ -3,9 +3,10 @@
 **This template is not supported by Palo Alto Networks.** 
 </br>
 
-### Diagram
+
 [<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmattmclimans%2FPaloAltoNetworks%2Fmaster%2Fazure%2Fexisting-environment%2Fadd-multiple-firewalls%2FazureDeploy.json)
 
+### Diagram
 This template deploys a selected number of Palo Alto Networks VM-300 Series firewalls into an existing VNET. 
 </br>
 <p align="center"> 
