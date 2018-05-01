@@ -84,16 +84,16 @@
 				"Description": "Sets the type of storage account to use for the OS disk(s) of the firewall(s).  'New Unmanaged Storage Account' creates a new storage account in the defined resource group.  'Existing Unmanaged Storage Account' uses an existing storage account in the defined resource group.  'Managed Storage' uses Azure's managed disks."
 			}
 		},
-		"storageAccountResourceGroup": {
-			"type": "string",
-			"metadata": {
-				"description": "Applies only to new/existing unmanaged storage.  If creating a 'New Unmanaged Storage Account', enter the resource group of where you want to deploy the new storage account.  If using an 'Existing Unmanaged Storage Account', enter the name of the resource group that contains it."
-			}
-		},
 		"storageAccountName": {
 			"type": "string",
 			"metadata": {
 				"description": "Applies only to unmanaged storage. If creating a 'New Unmanaged Storage Account', this will be the name of the new storage account.  If using an 'Existing Unmanaged Storage Account', enter the name of the existing storage account."
+			}
+		},
+		"storageAccountResourceGroup": {
+			"type": "string",
+			"metadata": {
+				"description": "Applies only to new/existing unmanaged storage.  If creating a 'New Unmanaged Storage Account', enter the resource group of where you want to deploy the new storage account.  If using an 'Existing Unmanaged Storage Account', enter the name of the resource group that contains it."
 			}
 		},
 		"osDiskStorageType": {
