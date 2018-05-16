@@ -897,7 +897,7 @@
             "name": "VM-FW1",
             "location": "[resourceGroup().location]",
             "plan": {
-                "name": "",
+                "name": "bundle2",
                 "product": "vmseries1",
                 "publisher": "paloaltonetworks"
             },
