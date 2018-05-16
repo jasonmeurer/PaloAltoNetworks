@@ -273,7 +273,7 @@
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/backendAddressPools/AS-Web')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/HTTP-80')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/TCP-22')]"
                             }
                         }
                     },
@@ -293,17 +293,17 @@
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/backendAddressPools/AS-Web')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/HTTP-80')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/TCP-22')]"
                             }
                         }
                     }
                 ],
                 "probes": [
                     {
-                        "name": "HTTP-80",
+                        "name": "TCP-22",
                         "properties": {
-                            "protocol": "Http",
-                            "port": 80,
+                            "protocol": "Tcp",
+                            "port": 22,
                             "requestPath": "/",
                             "intervalInSeconds": 5,
                             "numberOfProbes": 2
