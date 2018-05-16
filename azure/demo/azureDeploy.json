@@ -304,7 +304,6 @@
                         "properties": {
                             "protocol": "Tcp",
                             "port": 22,
-                            "requestPath": "/",
                             "intervalInSeconds": 5,
                             "numberOfProbes": 2
                         }
