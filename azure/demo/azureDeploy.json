@@ -258,13 +258,13 @@
                 ],
                 "loadBalancingRules": [
                     {
-                        "name": "LB-Web-SSH",
+                        "name": "LB-Web-HTTP",
                         "properties": {
                             "frontendIPConfiguration": {
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/frontendIPConfigurations/LB-Web-FrontEnd')]"
                             },
-                            "frontendPort": 22,
-                            "backendPort": 22,
+                            "frontendPort": 80,
+                            "backendPort": 80,
                             "enableFloatingIP": false,
                             "idleTimeoutInMinutes": 4,
                             "protocol": "Tcp",
