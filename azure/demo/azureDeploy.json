@@ -273,7 +273,7 @@
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/backendAddressPools/AS-Web')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/TCP-22')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/TCP-SSH')]"
                             }
                         }
                     },
@@ -293,14 +293,14 @@
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/backendAddressPools/AS-Web')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/TCP-22')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/TCP-SSH')]"
                             }
                         }
                     }
                 ],
                 "probes": [
                     {
-                        "name": "TCP-22",
+                        "name": "TCP-SSH",
                         "properties": {
                             "protocol": "Tcp",
                             "port": 22,
@@ -897,7 +897,7 @@
             "name": "VM-FW1",
             "location": "[resourceGroup().location]",
             "plan": {
-                "name": "bundle2",
+                "name": "",
                 "product": "vmseries1",
                 "publisher": "paloaltonetworks"
             },
