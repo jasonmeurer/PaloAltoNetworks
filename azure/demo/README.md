@@ -2,9 +2,13 @@
 
 </br>
 
-
 [<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmattmclimans%2FPaloAltoNetworks%2Fmaster%2Fazure%2Fdemo%2FazureDeploy.json)
-
+ 
+</br>
+<p align="center"> 
+<img src="https://raw.githubusercontent.com/mattmclimans/tools/master/images/img-4.png">
+</p>
+</br>
 This template deploys a firewall sandwich environment that includes:
 
 - One Public Load Balancer (LB-Public) - "Basic SKU"
