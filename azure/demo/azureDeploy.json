@@ -258,6 +258,26 @@
                 ],
                 "loadBalancingRules": [
                     {
+                        "name": "LB-Web-SSH",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/frontendIPConfigurations/LB-Web-FrontEnd')]"
+                            },
+                            "frontendPort": 22,
+                            "backendPort": 22,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/backendAddressPools/AS-Web')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Web'), '/probes/HTTP-80')]"
+                            }
+                        }
+                    },
+                    {
                         "name": "LB-Web-HTTP",
                         "properties": {
                             "frontendIPConfiguration": {
@@ -335,6 +355,26 @@
                             },
                             "frontendPort": 22,
                             "backendPort": 22,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Public'), '/backendAddressPools/AS-FW')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Public'), '/probes/TCP-22')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "LB-Public-HTTP",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', 'LB-Public'), '/frontendIPConfigurations/Lb-Public-FrontEnd')]"
+                            },
+                            "frontendPort": 80,
+                            "backendPort": 80,
                             "enableFloatingIP": false,
                             "idleTimeoutInMinutes": 4,
                             "protocol": "Tcp",
