@@ -7,7 +7,18 @@
             "allowedValues": [
                 "Standard_DS3_v2",
                 "Standard_DS4_v2",
-		"Standard_DS5_v2"
+									"Standard_DS5_v2"
+            ],
+            "metadata": {
+                "description": "Azure VM size for VM-Series"
+            }
+        },
+    	"licenseType": {
+            "type": "string",
+            "allowedValues": [
+                "byol",
+                "bundle1",
+								"bundle2"
             ],
             "metadata": {
                 "description": "Azure VM size for VM-Series"
@@ -897,7 +908,7 @@
             "name": "VM-FW1",
             "location": "[resourceGroup().location]",
             "plan": {
-                "name": "byol",
+                "name": "[parameters('licenseType')]",
                 "product": "vmseries1",
                 "publisher": "paloaltonetworks"
             },
@@ -917,7 +928,7 @@
                     "imageReference": {
                         "publisher": "paloaltonetworks",
                         "offer": "vmseries1",
-                        "sku": "byol",
+                        "sku": "[parameters('licenseType')]",
                         "version": "8.0.0"
                     },
                     "osDisk": {
@@ -964,7 +975,7 @@
             "name": "VM-FW2",
             "location": "[resourceGroup().location]",
             "plan": {
-                "name": "byol",
+                "name": "[parameters('licenseType')]",
                 "product": "vmseries1",
                 "publisher": "paloaltonetworks"
             },
@@ -984,7 +995,7 @@
                     "imageReference": {
                         "publisher": "paloaltonetworks",
                         "offer": "vmseries1",
-                        "sku": "byol",
+                        "sku": "[parameters('licenseType')]",
                         "version": "8.0.0"
                     },
                     "osDisk": {
